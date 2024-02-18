@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { LOGO_URL } from '../utils/constant'
+import { LOGO_URL } from '../../utils/constant'
 const Navbar = () => {
   const [btnName, setBtnName] = useState("Login");
 

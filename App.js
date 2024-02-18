@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client"
 import "./App.css"
 import RestaurantCard from './src/components/RestaurantCard'
 import Body from './src/components/Body'
-import Navbar from "./src/components/Navbar"
+import Navbar from "./src/components/Navbar/Navbar"
 /* Header
    --logo
    --Nav Items
