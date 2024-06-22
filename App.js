@@ -1,33 +1,39 @@
-import React from 'react'
+import React, { Children } from 'react'
 import ReactDOM from "react-dom/client"
 import "./App.css"
-import RestaurantCard from './src/components/RestaurantCard'
 import Body from './src/components/Body'
 import Navbar from "./src/components/Navbar/Navbar"
-/* Header
-   --logo
-   --Nav Items
-Body 
-   --Search
-   --restaurantContainer
-   --restaurantCard
-Footer
-   --Copyright
-   --Links
-   --Address
-   --Contact */
+import RestaurantMenu from './src/components/RestaurantMenu'
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
    const AppLayout = () => {
     return (
     <div className="app">
         <Navbar/>
-        <Body/>
-        <RestaurantCard/>
+        <Outlet />
     </div>
         )
    };
 
+   const appRouter = createBrowserRouter([
+      {
+         path:'/',
+         element:<AppLayout/>,
+         children:[
+                  {
+                     path:'/',
+                     element:<Body/>
+                  },
+                  {
+                     path:'/restaurants/:resId',
+                     element:<RestaurantMenu/>
+                  },
+                  ],
+                  errorElement:<Error/>,
+      }
+   ]);
+
    const root = ReactDOM.createRoot(document.getElementById("root"));
-   root.render(<AppLayout/>);
+   root.render(<RouterProvider router={appRouter}/>)
 
    
