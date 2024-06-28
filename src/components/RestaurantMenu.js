@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import Shimmer  from "./Shimmer/Shimmer"
+import Shimmer  from "./Shimmer"
 import { CDN_URL } from "../utils/constant";
 import { resAPI_URL } from "../utils/constant"
 import { useParams } from "react-router-dom";
@@ -58,14 +58,14 @@ const {resId} = useParams();
             </div> */}
 
             <div className="recommended">
-                <h1>{recommended.title}</h1>
+                <h1>{recommended?.title}</h1>
                 <ul>
-                {recommended.itemCards.map((item, index) => (
+                {recommended?.itemCards.map((item, index) => (
                         <li key={index}>
                             <div className="main">
-                            <img className='ResLogo' src={CDN_URL+ item.card.info.imageId} alt="ResLogo" />
-                           <h3>{item.card.info.name} - {(item.card.info.defaultPrice)/100} </h3>
-                           <p>{item.card.info.description}</p>
+                            <img className='ResLogo' src={CDN_URL+ item?.card?.info?.imageId} alt="ResLogo" />
+                           <h3>{item?.card?.info?.name} - {(item?.card?.info?.defaultPrice)/100} </h3>
+                           <p>{item?.card?.info?.description}</p>
                            </div>
                         </li>
                     ))}

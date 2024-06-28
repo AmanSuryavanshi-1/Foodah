@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import RestaurantCard from './RestaurantCard'
-import Shimmer from './Shimmer/Shimmer'
+import Shimmer from './Shimmer'
 import { menuAPI_URL } from '../utils/constant'
 import { Link } from 'react-router-dom'
 
@@ -33,7 +33,7 @@ const Body = () => {
   };
    
   return listOfRestaurants.length == 0 ? <Shimmer/> : (
-    <div className='body'>
+    <div  className="bg-white">
       <div className="search-filter">
         <div className="search">
           <input type="text" className='search-box' value={searchText}

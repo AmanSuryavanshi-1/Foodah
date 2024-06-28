@@ -2,13 +2,13 @@ import React, { Children } from 'react'
 import ReactDOM from "react-dom/client"
 import "./App.css"
 import Body from './src/components/Body'
-import Navbar from "./src/components/Navbar/Navbar"
+import Navbar from "./src/components/Navbar"
 import RestaurantMenu from './src/components/RestaurantMenu'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
    const AppLayout = () => {
     return (
-    <div className="app">
+    <div>
         <Navbar/>
         <Outlet />
     </div>
