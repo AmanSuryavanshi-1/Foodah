@@ -8,6 +8,9 @@ const Navbar = () => {
         <div className='logoContainer'>
           <img className='logo' src={LOGO_URL} alt="logo.img" />
         </div>
+        {/* <h1 class="text-3xl font-bold underline text-red-600">
+    Hello world!
+  </h1> */}
         <div className='navItems'>
         <ul>
             <li>Logo</li>

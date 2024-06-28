@@ -1,4 +1,7 @@
-*{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* *{
     margin: 0;
     padding: 0;
     }
@@ -76,4 +79,4 @@
     
     .filter-btn:hover{
         background-color: aqua;
-    }
+    } */
