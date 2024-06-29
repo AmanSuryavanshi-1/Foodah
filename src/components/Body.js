@@ -33,27 +33,30 @@ const Body = () => {
   };
    
   return listOfRestaurants.length == 0 ? <Shimmer/> : (
-    <div  className="bg-white">
-      <div className="search-filter">
-        <div className="search">
-          <input type="text" className='search-box' value={searchText}
-          onChange={(e)=>{
-            setSearchText(e.target.value);
-          }}
+    <div className="bg-primary-textColor p-8 font-serif">
+      <div className="mb-6">
+        <div className="flex items-center space-x-4">
+          <input
+            type="text"
+            className="border border-gray-300 rounded-xl p-3 mx-8 w-96 justify-center shadow-sm"
+            placeholder="Search for restaurants..."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-
-        <button className='search-btn'
-        onClick={()=>{
-          const searchedRestaurants = listOfRestaurants.filter((res)=>{
-            return res.info.name.toLowerCase().includes(searchText.toLowerCase());
-          })
-          setFilteredRestaurants(searchedRestaurants);
-        }}
-        >Search</button>
-
+          <button
+            className="bg-primary-dark text-white px-6 py-3 rounded-md hover:bg-primary-light transition"
+            onClick={() => {
+              const searchedRestaurants = listOfRestaurants.filter((res) => {
+                return res.info.name.toLowerCase().includes(searchText.toLowerCase());
+              });
+              setFilteredRestaurants(searchedRestaurants);
+            }}
+          >
+            Search
+          </button>
         </div>
       </div>
-      
+
       {/* <div className="filter" >
         <button className='filter-btn'
         onClick={()=>{
@@ -65,15 +68,13 @@ const Body = () => {
         >Top Rated Restaurants </button>
       </div> */}
       
-        <div className="RestaurantContainer">
+      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-5 px-8 mx-8">
         {filteredRestaurants.map((restaurant) => (
-          <Link key={restaurant.info.id}
-                to={"/restaurants/"+ restaurant.info.id}
-          >
-                <RestaurantCard resInfo={restaurant}  />
+          <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
+            <RestaurantCard resInfo={restaurant} />
           </Link>
-            ))}
-        </div>
+        ))}
+      </div>
     </div>
   )
 }

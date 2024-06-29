@@ -7,14 +7,18 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          light: '#FEFFD2',
-          background: '#FEFFD2',
-          dark: '#F36666',
+          light: '#ffffcc',
+          dark: '#403F45',
+          white: '#FFFFFF',
+          grey: "#C5C1C0",
+          textColor: '#222223',
         },
         secondary: {
-          light: '233, 235, 158',
-          background: '#DB2777',
-          dark: '#BE185D',
+          light: '#FDEC00',
+          dark: '#403F45',
+          white: '#FFFFFF',
+          grey: "#C5C1C0",
+          textColor: '#0A1612',
         },
       },
     },
