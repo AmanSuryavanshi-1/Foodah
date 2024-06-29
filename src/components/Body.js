@@ -33,18 +33,18 @@ const Body = () => {
   };
    
   return listOfRestaurants.length == 0 ? <Shimmer/> : (
-    <div className="bg-primary-textColor p-8 font-serif">
+    <div className="bg-primary-bgColor p-8 font-serif">
       <div className="mb-6">
-        <div className="flex items-center space-x-4">
+        <div className="flex justify-center">
           <input
             type="text"
-            className="border border-gray-300 rounded-xl p-3 mx-8 w-96 justify-center shadow-sm"
+            className="border-primary-grey rounded-2xl px-3 mx-8 w-96 justify-center shadow-sm"
             placeholder="Search for restaurants..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
-            className="bg-primary-dark text-white px-6 py-3 rounded-md hover:bg-primary-light transition"
+            className="bg-primary-light text-primary-bgColor rounded-2xl px-6 py-2 hover:bg-primary-dark transition"
             onClick={() => {
               const searchedRestaurants = listOfRestaurants.filter((res) => {
                 return res.info.name.toLowerCase().includes(searchText.toLowerCase());
@@ -68,7 +68,7 @@ const Body = () => {
         >Top Rated Restaurants </button>
       </div> */}
       
-      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-5 px-8 mx-8">
+      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-5 px-12 mx-8">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
             <RestaurantCard resInfo={restaurant} />

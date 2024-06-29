@@ -12,7 +12,7 @@ const Navbar = () => {
   const [btnName, setBtnName] = useState("Login");
 
   return (
-    <div className="flex items-center justify-between font-serif bg-primary-textColor px-2 shadow-2xl">
+    <div className="flex items-center justify-between font-serif bg-primary-bgColor px-2 shadow-2xl">
       <div className="flex items-center">
         <img className="h-24 w-26" src={mainLogo} alt="Logo" />
       </div>
