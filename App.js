@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React, { Suspense, lazy } from 'react'
 import ReactDOM from "react-dom/client"
 import "./App.css"
 import Body from './src/components/Body'
@@ -9,7 +9,10 @@ import About from './src/components/NavComponents/About'
 import Contact from './src/components/NavComponents/Contact'
 import Cart from './src/components/NavComponents/Cart'
 import Auth from './src/components/NavComponents/Auth'
-import Wishlist from './src/components/NavComponents/Wishlist'
+
+// import Wishlist from './src/components/NavComponents/Wishlist'
+
+const wishlist = lazy(()=> import("./src/components/NavComponents/Wishlist"));
 
    const AppLayout = () => {
     return (
@@ -39,7 +42,7 @@ import Wishlist from './src/components/NavComponents/Wishlist'
                   },
                   {
                      path:'/wishlist',
-                     element:<Wishlist/>
+                     element:<Suspense fallback={<h1>Resources are getting ready</h1>}> <wishlist/> </Suspense> ,
                   },
                   {
                      path:'/cart',
