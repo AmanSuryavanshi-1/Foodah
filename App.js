@@ -43,7 +43,7 @@ const wishlist = lazy(()=> import("./src/components/NavComponents/Wishlist"));
                   },
                   {
                      path:'/wishlist',
-                     element:<Suspense fallback={<h1  className='m-10 text-primary-light text-2xl font-semibold'>Resources are getting ready</h1>}> <wishlist/> </Suspense> ,
+                     element:<Suspense fallback={<h1  className='m-10 text-primary-light text-2xl font-semibold'>Resources are getting ready</h1>}> <wishlist /> </Suspense> ,
                   },
                   {
                      path:'/cart',
