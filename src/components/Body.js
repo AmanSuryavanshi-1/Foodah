@@ -38,13 +38,13 @@ const Body = () => {
         <div className="flex justify-center">
           <input
             type="text"
-            className="border-primary-grey rounded-2xl px-3 mx-8 w-96 justify-center shadow-sm"
+            className="border-primary-grey rounded-2xl px-3 mx-8 w-1/3 justify-center shadow-sm"
             placeholder="Search for restaurants..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
-            className="bg-primary-light text-primary-bgColor rounded-2xl px-6 py-2 hover:bg-primary-dark transition"
+            className="bg-primary-light text-primary-bgColor rounded-2xl px-6 py-2 hover:bg-primary-dark hover:text-primary-light transition"
             onClick={() => {
               const searchedRestaurants = listOfRestaurants.filter((res) => {
                 return res.info.name.toLowerCase().includes(searchText.toLowerCase());

@@ -19,7 +19,7 @@ locality,
   return (
     <div className="overflow-hidden transform transition duration-500 hover:scale-95">
     <img
-      className="rounded-2xl w-full h-56 object-fill"
+      className="mx-4 my-2 rounded-2xl w-11/12 h-56 object-fill shadow-lg"
       src={`${CDN_URL}${cloudinaryImageId}`}
       alt="ResLogo"
     />
