@@ -3,6 +3,7 @@ import RestaurantCard from './RestaurantCard'
 import Shimmer from './Shimmer'
 import { menuAPI_URL } from '../utils/constant'
 import { Link } from 'react-router-dom'
+import useOnlineStatus from '../utils/useOnlineStatus'
 
 const Body = () => {
   const [listOfRestaurants , setListOfRestaurants] = useState([]);
@@ -35,6 +36,15 @@ const Body = () => {
     }
   };
    
+  const onlineStatus = useOnlineStatus();
+  if(onlineStatus === false) return (
+    <div className="flex items-center justify-center min-h-screen bg-red-100">
+      <h1 className="text-xl font-semibold text-red-600 bg-red-200 p-4 rounded-md shadow-lg">
+        Looks like you are offline!! Please check your internet connection
+      </h1>
+    </div>
+  );
+  
   return listOfRestaurants.length == 0 ? <Shimmer/> : (
     <div className="bg-primary-bgColor p-8 font-serif">
       <div className="mb-6">

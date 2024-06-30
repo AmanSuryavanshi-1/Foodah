@@ -13,7 +13,7 @@ import Wishlist from './src/components/NavComponents/Wishlist'
 
    const AppLayout = () => {
     return (
-    <div>
+    <div className='bg-primary-bgColor'>
         <Navbar/>
         <Outlet />
     </div>

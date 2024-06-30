@@ -2,22 +2,26 @@ import React, { useState } from 'react';
 // import mainLogo from '../../Assets/MainLogo.png';
 import mainLogo from '../../Assets/Logo.png';
 import { MdOutlineAddShoppingCart, MdOutlineFavoriteBorder, MdOutlineShoppingCartCheckout } from "react-icons/md";
+import useOnlineStatus from "../utils/useOnlineStatus"
 import { LiaInfoSolid } from "react-icons/lia";
 import { LuLogIn } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { IoCallOutline } from "react-icons/io5";
+import { RiSignalWifiOffLine } from "react-icons/ri";
+import { MdOutlineNetworkWifi } from "react-icons/md";
 
 const Navbar = () => {
   const [btnName, setBtnName] = useState("Login");
-
+  const onlineStatus = useOnlineStatus();
   return (
-    <div className="flex items-center justify-between font-serif bg-primary-bgColor px-4 py-1 shadow-2xl">
+    <div className="flex items-center justify-between font-serif bg-primary-bgColor px-4 py-1">
       <div className="flex items-center">
         <Link to="/"> 
         {/* <img className="h-20 w-36 my-2" src={mainLogo} alt="Logo" />  */}
           <img className="h-24 w-24" src={mainLogo} alt="Logo" /> 
         </Link>
+        
       </div>
 
       <div className="navItems">
@@ -54,6 +58,13 @@ const Navbar = () => {
               {btnName === "Login" ? <LuLogIn className="h-6 w-6 mr-1"/> : <CiLogout className="h-6 w-6 mr-2"/> }
               {btnName} 
             </Link>
+          </li>
+
+          <li 
+            className="flex items-center px-2 cursor-pointer text-primary-light hover:text-primary-white" 
+            title={onlineStatus ? "Connected to internet" : "Offline"}
+          >
+            {onlineStatus ? <MdOutlineNetworkWifi className="h-6 w-6"/> : <RiSignalWifiOffLine className="h-6 w-6"/>}
           </li>
         </ul>
       </div>
