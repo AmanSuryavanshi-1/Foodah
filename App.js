@@ -5,6 +5,11 @@ import Body from './src/components/Body'
 import Navbar from "./src/components/Navbar"
 import RestaurantMenu from './src/components/RestaurantMenu'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import About from './src/components/NavComponents/About'
+import Contact from './src/components/NavComponents/Contact'
+import Cart from './src/components/NavComponents/Cart'
+import Auth from './src/components/NavComponents/Auth'
+import Wishlist from './src/components/NavComponents/Wishlist'
 
    const AppLayout = () => {
     return (
@@ -23,6 +28,26 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
                   {
                      path:'/',
                      element:<Body/>
+                  },
+                  {
+                     path:'/about',
+                     element:<About/>
+                  },
+                  {
+                     path:'/contact',
+                     element:<Contact/>
+                  },
+                  {
+                     path:'/wishlist',
+                     element:<Wishlist/>
+                  },
+                  {
+                     path:'/cart',
+                     element:<Cart/>
+                  },
+                  {
+                     path:'/auth',
+                     element:<Auth/>
                   },
                   {
                      path:'/restaurants/:resId',
