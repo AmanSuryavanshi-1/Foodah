@@ -13,14 +13,14 @@ const [res, recommended] = useRestaurantMenu(resId);
         <div>
             <div className="mainResInfo">
                 <h1>Menu</h1>
-                <h3>{res.name}</h3>
-                <h4>Ratings:- {res.avgRatingString} <span>{res.totalRatingsString}</span> </h4>
-                <h4>Cuisines:- {res.cuisines.join(", ")}</h4>
-                <h4>Cost:- {res.costForTwoMessage}</h4>
-                <h4>{res.feeDetails.totalFee/100} Delivery fee will apply</h4>
-                <h4>{res.sla.lastMileTravelString}</h4>
-                <h4>{res.sla.slaString}</h4>
-                <h4>{res.locality} {res.areaName} {res.city}</h4>
+                <h3>{res?.name}</h3>
+                <h4>Ratings:- {res?.avgRatingString} <span>{res?.totalRatingsString}</span> </h4>
+                <h4>Cuisines:- {res?.cuisines?.join(", ")}</h4>
+                <h4>Cost:- {res?.costForTwoMessage}</h4>
+                <h4>{res?.feeDetails?.totalFee/100} Delivery fee will apply</h4>
+                <h4>{res?.sla?.lastMileTravelString}</h4>
+                <h4>{res?.sla?.slaString}</h4>
+                <h4>{res?.locality} {res?.areaName} {res?.city}</h4>
             </div>
 
             {/* <div className="topPicks">

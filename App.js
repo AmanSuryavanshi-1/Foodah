@@ -9,6 +9,7 @@ import About from './src/components/NavComponents/About'
 import Contact from './src/components/NavComponents/Contact'
 import Cart from './src/components/NavComponents/Cart'
 import Auth from './src/components/NavComponents/Auth'
+import Error from './src/components/Error'
 
 // import Wishlist from './src/components/NavComponents/Wishlist'
 
@@ -42,7 +43,7 @@ const wishlist = lazy(()=> import("./src/components/NavComponents/Wishlist"));
                   },
                   {
                      path:'/wishlist',
-                     element:<Suspense fallback={<h1>Resources are getting ready</h1>}> <wishlist/> </Suspense> ,
+                     element:<Suspense fallback={<h1  className='m-10 text-primary-light text-2xl font-semibold'>Resources are getting ready</h1>}> <wishlist/> </Suspense> ,
                   },
                   {
                      path:'/cart',
@@ -56,9 +57,9 @@ const wishlist = lazy(()=> import("./src/components/NavComponents/Wishlist"));
                      path:'/restaurants/:resId',
                      element:<RestaurantMenu/>
                   },
-                  ],
-                  errorElement:<Error/>,
-      }
+            ],
+            errorElement:<Error/>,
+},
    ]);
 
    const root = ReactDOM.createRoot(document.getElementById("root"));
