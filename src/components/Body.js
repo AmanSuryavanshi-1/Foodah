@@ -15,18 +15,21 @@ const Body = () => {
   },[]);
   const fetchData = async () => {
     try{
-      // const data = await fetch('https://corsproxy.io/?' + encodeURIComponent("https://www.swiggy.com/mapi/homepage/getCards?lat=28.7040592&lng=77.10249019999999"));
       const data = await fetch(menuAPI_URL);
       const json = await data.json();
-      // const responseRes = json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants;
-      const responseRes = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-      // console.log(responseRes);
-      if(Array.isArray(responseRes)){
+      
+      const checkJsonData = (json) =>{
+        for(let i=0; i<json?.data?.cards.length; i++){
+          let checkData = json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+          if(checkData != undefined){
+            return checkData;
+          }
+        }
+      }
+      const responseRes = checkJsonData(json);
+        console.log(responseRes);
         setListOfRestaurants(responseRes);
         setFilteredRestaurants(responseRes);
-      }else{
-        console.error("Invalid data format", restaurants);
-      }
     }catch(error){
       console.error("Error in fetching data:", error);
     }
@@ -67,8 +70,8 @@ const Body = () => {
         }}
         >Top Rated Restaurants </button>
       </div> */}
-      
-      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-5 px-12 mx-8">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 px-12 mx-8">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
             <RestaurantCard resInfo={restaurant} />

@@ -19,19 +19,23 @@ locality,
   return (
     <div className="overflow-hidden transform transition duration-500 hover:scale-95">
     <img
-      className="mx-4 my-2 rounded-2xl w-11/12 h-56 object-fill shadow-lg"
+      className="mx-2 rounded-3xl w-11/12 h-44 object-fill shadow-xl"
       src={`${CDN_URL}${cloudinaryImageId}`}
       alt="ResLogo"
     />
     <div className="p-4">
-      <h3 className="text-lg font-semibold text-primary-light mb-2">{name}</h3>
-      <h4 className="text-primary-light">Cuisines: {cuisines.join(", ")}</h4>
-      <h4 className="text-primary-light">Ratings: {avgRatingString} <span className="text-primary-light">({totalRatingsString})</span></h4>
-      <h4 className="text-primary-light">Cost: {costForTwo}</h4>
-      <h4 className="text-primary-light">{sla?.deliveryTime} min away</h4>
-      <h4 className="text-primary-light">Distance: {sla?.lastMileTravelString}</h4>
-      <h4 className="text-primary-light">{locality}</h4>
-    </div>
+        <h3 className="text-lg font-semibold text-primary-light mb-1 truncate max-w-full">{name}</h3>
+        <h4 className="text-primary-light truncate max-w-full">Cuisines: {cuisines.join(", ")}</h4>
+        <h4 className="text-primary-light font-sans">
+          Ratings: {avgRatingString} <span className="text-primary-light">({totalRatingsString})</span>
+        </h4>
+        <div className="flex justify-between text-primary-light">
+          <h4 className='font-sans'>{sla?.deliveryTime} min away</h4>
+          <h4 className='font-sans'>{sla?.lastMileTravelString}</h4>
+        </div>
+        <h4 className="text-primary-light font-bold">{costForTwo}</h4>     
+        <h4 className="text-primary-light">{locality}</h4>
+      </div>
   </div>
   )
 }
