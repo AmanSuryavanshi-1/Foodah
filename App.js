@@ -17,7 +17,7 @@ const wishlist = lazy(()=> import("./src/components/NavComponents/Wishlist"));
 
    const AppLayout = () => {
     return (
-    <div className='bg-primary-bgColor'>
+    <div className='bg-primary-bgColor min-h-screen'>
         <Navbar/>
         <Outlet />
     </div>

@@ -1,59 +1,66 @@
 import React from "react";
-import Shimmer  from "./Shimmer"
+import Shimmer from "./Shimmer";
 import { CDN_URL } from "../utils/constant";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 
-const RestaurantMenu = () =>{
+const RestaurantMenu = () => {
+  const { resId } = useParams();
+  const [res, recommended] = useRestaurantMenu(resId);
 
-const {resId} = useParams();
-const [res, recommended] = useRestaurantMenu(resId);
-
-    return res===null ? (<Shimmer/>) : (
-        <div>
-            <div className="mainResInfo">
-                <h1>Menu</h1>
-                <h3>{res?.name}</h3>
-                <h4>Ratings:- {res?.avgRatingString} <span>{res?.totalRatingsString}</span> </h4>
-                <h4>Cuisines:- {res?.cuisines?.join(", ")}</h4>
-                <h4>Cost:- {res?.costForTwoMessage}</h4>
-                <h4>{res?.feeDetails?.totalFee/100} Delivery fee will apply</h4>
-                <h4>{res?.sla?.lastMileTravelString}</h4>
-                <h4>{res?.sla?.slaString}</h4>
-                <h4>{res?.locality} {res?.areaName} {res?.city}</h4>
-            </div>
-
-            {/* <div className="topPicks">
-                <h2>Top Picks</h2>
-                <div className="TopPicksCarousel">
-                    {res.topPicks.map((item, index) => (
-                        <div key={index}>
-                            <img src={item.imageUrl} alt={item.name} />
-                            <h4>{item.name}</h4>
-                            <h4>${item.price}</h4>
-                        </div>
-                    ))}
-                </div>
-
-            </div> */}
-
-            <div className="recommended">
-                <h1>{recommended?.title}</h1>
-                <ul>
-                {recommended?.itemCards.map((item, index) => (
-                        <li key={index}>
-                            <div className="main">
-                            <img className='ResLogo' src={CDN_URL+ item?.card?.info?.imageId} alt="ResLogo" />
-                           <h3>{item?.card?.info?.name} - {(item?.card?.info?.defaultPrice)/100} </h3>
-                           <p>{item?.card?.info?.description}</p>
-                           </div>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
+  return res === null ? (
+    <Shimmer />
+  ) : (
+    <div className="bg-primary-bgColor">
+      <div className="max-w-5xl mx-auto px-4 py-8">
+        <div className="mainResInfo bg-white shadow-lg rounded-lg p-6 mb-8">
+          <h1 className="text-3xl font-bold text-primary-yellow mb-4">Menu</h1>
+          <h3 className="text-xl font-semibold">{res?.name}</h3>
+          <div className="flex items-center text-primary-grey">
+            <span className="text-sm">
+              Ratings: {res?.avgRatingString} <span>{res?.totalRatingsString}</span>
+            </span>
+          </div>
+          <div className="text-sm text-primary-grey">
+            <span>Cuisines: {res?.cuisines?.join(", ")}</span>
+          </div>
+          <div className="text-sm text-gray-700">
+            <span>Cost: {res?.costForTwoMessage}</span>
+          </div>
+          <div className="text-sm text-gray-700">
+            <span>{res?.feeDetails?.totalFee / 100} Delivery fee will apply</span>
+          </div>
+          <div className="text-sm text-gray-700">
+            <span>{res?.sla?.lastMileTravelString}</span>
+          </div>
+          <div className="text-sm text-gray-700">
+            <span>{res?.sla?.slaString}</span>
+          </div>
+          <div className="text-sm text-gray-700">
+            <span>
+              {res?.locality} {res?.areaName} {res?.city}
+            </span>
+          </div>
         </div>
-    )
-}
 
-export default RestaurantMenu
+        <div className="grid grid-cols-1 gap-4">
+          <h1 className="text-3xl font-bold text-primary-yellow mb-4">{recommended?.title}</h1>
+          {recommended?.itemCards.map((item, index) => (
+            <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
+              <img className="w-full h-10" src={CDN_URL + item?.card?.info?.imageId} alt="Restaurant Logo" />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-primary-yellow mb-2">{item?.card?.info?.name}</h3>
+                <p className="text-sm text-gray-700 mb-2">{item?.card?.info?.description}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-bold text-primary-yellow">${(item?.card?.info?.defaultPrice) / 100}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RestaurantMenu;
