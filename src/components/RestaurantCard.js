@@ -1,10 +1,14 @@
 import React from 'react'
 import { CDN_URL } from '../utils/constant'
+import useFallbackImage from '../utils/useFallbackImage';
 
 const RestaurantCard = ({resInfo}) => {
     if (!resInfo || !resInfo.info) {
         return null;
       }
+
+const handleImageError = useFallbackImage();
+
 const{
 cloudinaryImageId,
 name,
@@ -16,12 +20,14 @@ costForTwo,
 locality,
 } = resInfo?.info;
 
+
   return (
     <div className="overflow-hidden transform transition duration-500 hover:scale-95">
     <img
       className="mx-2 rounded-3xl w-11/12 h-44 object-fill shadow-xl"
       src={`${CDN_URL}${cloudinaryImageId}`}
       alt="ResLogo"
+      onError={handleImageError}
     />
     <div className="p-4">
         <h3 className="text-lg font-semibold text-primary-light mb-1 truncate max-w-full">{name}</h3>

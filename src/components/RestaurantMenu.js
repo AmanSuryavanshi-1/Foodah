@@ -3,12 +3,13 @@ import Shimmer from "./Shimmer";
 import { CDN_URL } from "../utils/constant";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
-import img1 from "../../Assets/Foodah.jpg";
+import useFallbackImage from "../utils/useFallbackImage";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const [res, recommended] = useRestaurantMenu(resId);
-
+  const handleImageError = useFallbackImage();
+  
   return res === null ? (
     <Shimmer />
   ) : (
@@ -21,6 +22,7 @@ const RestaurantMenu = () => {
             className="w-32 h-32 object-cover rounded mr-4"
             src={CDN_URL + res?.cloudinaryImageId}
             alt={res?.name}
+            onError={handleImageError}
           />
           <div>
             <h3 className="text-2xl font-semibold text-primary-light pb-2">{res?.name}</h3>
@@ -42,11 +44,18 @@ const RestaurantMenu = () => {
           <h1 className="text-xl font-bold text-primary-light font-serif">{recommended?.title}</h1>
           {recommended?.itemCards.map((item, index) => (
             <div key={index} className="flex items-center p-4 shadow-xl rounded-lg overflow-hidden">
-              <img className="w-28 h-24 object-cover rounded mr-4" src={CDN_URL + item?.card?.info?.imageId} alt={img1} />
+              <img className="w-28 h-24 object-cover rounded mr-4" src={CDN_URL + item?.card?.info?.imageId} alt={item?.card?.info?.name} onError={handleImageError} />
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-semibold text-primary-light">{item?.card?.info?.name}</h3>
-                  <span className="text-lg font-bold  text-primary-white">₹{(item?.card?.info?.defaultPrice) / 100}</span>
+                  <span className="text-lg font-bold  text-primary-white">
+                    {item?.card?.info?.defaultPrice > 0
+                        ? new Intl.NumberFormat("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                          }).format(item?.card?.info?.defaultPrice / 100)
+                        : " "}
+                  </span>
                 </div>
                 <p className="text-sm text-primary-light mb-2 mr-12">{item?.card?.info?.description}</p>
                 <div className="flex items-center justify-between">
