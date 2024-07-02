@@ -19,24 +19,37 @@ const RestaurantMenu = () => {
 
         <div className="mainResInfo shadow-primary-light shadow-sm rounded-lg border border-primary-yellow p-4 mb-8 flex items-center">
           <img
-            className="w-32 h-32 object-cover rounded mr-4"
+            className="w-36 h-36 object-cover rounded mr-4"
             src={CDN_URL + res?.cloudinaryImageId}
             alt={res?.name}
             onError={handleImageError}
           />
           <div>
-            <h3 className="text-2xl font-semibold text-primary-light pb-2">{res?.name}</h3>
-            <div className="flex items-center text-primary-grey mb-1">
-              <span className="text-sm text-green-500">★ {res?.avgRatingString} <span>({res?.totalRatingsString})</span></span>
-            </div>
-            <div className="text-sm text-primary-light mb-1">
-              <span>{res?.cuisines?.join(", ")}</span>
-            </div>
-            <div className="flex items-center text-sm text-primary-light mb-1">
-              <span>{res?.sla?.slaString}</span>
-              <span className="mx-1">|</span>
-              <span className="font-extrabold font-mono">{res?.costForTwoMessage}</span>
-            </div>
+            <h3 className="text-2xl font-semibold text-primary-light pb-2">{res?.name} <span className="text-red-500">veg {res?.veg}</span></h3>
+              <div className="flex items-center text-primary-grey mb-1">
+                <span className="text-sm text-green-500" >★ {res?.avgRatingString} <span>({res?.totalRatingsString})</span></span>
+              </div>
+              <div className="text-sm text-primary-light mb-1">
+                <span>{res?.cuisines?.join(", ")}</span>
+              </div>
+              <div className="flex items-center text-sm text-primary-light mb-1">
+                  <span>{res?.sla?.slaString}</span>
+                  <span className="mx-1">|</span>
+                  <span className="font-extrabold font-mono">{res?.costForTwoMessage}</span>
+              </div>
+              <div className="flex items-center text-sm text-primary-light mb-1"> 
+                  <span>{res?.feeDetails?.title}</span>
+                  <span className="mx-1">|</span>
+                  <span className="text-red-500">₹{res?.feeDetails?.totalFee/100}</span>
+              </div>
+              <div className="flex items-center text-sm text-primary-light mb-1">
+                    <span className="text-red-500">{res?.sla?.lastMileTravelString}</span>
+                    <span className="mx-1">|</span>
+                    <span className="text-red-500">{res?.sla?.deliveryTime} mins</span>
+              </div>
+              <div className="flex items-center text-sm text-primary-light mb-1">
+                <span>{res?.minOrderAmountString}</span>
+              </div>
           </div>
         </div>
 
@@ -60,6 +73,7 @@ const RestaurantMenu = () => {
                 <p className="text-sm text-primary-light mb-2 mr-12">{item?.card?.info?.description}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-green-600">★ {item?.card?.info?.ratings?.aggregatedRating?.rating} ({item?.card?.info?.ratings?.aggregatedRating?.ratingCount})</span>
+                  <span className="text-sm text-green-600">({item?.card?.info?.itemAttribute?.vegClassifier})</span>
                   <button className="bg-primary-yellow text-primary-bgColor shadow-md hover:bg-primary-light transition duration-300 px-3 py-1 rounded">ADD</button>
                 </div>
               </div>
