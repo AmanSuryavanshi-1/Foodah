@@ -3,7 +3,7 @@ import { resAPI_URL } from "../utils/constant"
 
 const useRestaurantMenu = (resId) => {
     const [res, setRes] = useState(null);
-    const [recommended, setRecommended] = useState(null);
+    const [menuItems, setMenuItems] = useState(null);
     
     useEffect(() => {
         fetchMenu();
@@ -17,10 +17,10 @@ const useRestaurantMenu = (resId) => {
         const restaurantData = json?.data?.cards[2]?.card?.card?.info;  
         setRes(restaurantData);
 
-        const RecommendedData = json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-        setRecommended(RecommendedData);
+        const menuItemsData = json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+        setMenuItems(menuItemsData);
   };
-  return [res,recommended]
+  return [res,menuItems]
 }
 
 export default useRestaurantMenu

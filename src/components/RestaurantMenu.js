@@ -7,7 +7,7 @@ import useFallbackImage from "../utils/useFallbackImage";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  const [res, recommended] = useRestaurantMenu(resId);
+  const [res, menuItems] = useRestaurantMenu(resId);
   const handleImageError = useFallbackImage();
   
   return res === null ? (
@@ -41,8 +41,8 @@ const RestaurantMenu = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-4 mt-12">
-          <h1 className="text-xl font-bold text-primary-light font-serif">{recommended?.title}</h1>
-          {recommended?.itemCards.map((item, index) => (
+          <h1 className="text-xl font-bold text-primary-light font-serif">{menuItems?.title}</h1>
+          {menuItems?.itemCards.map((item, index) => (
             <div key={index} className="flex items-center p-4 shadow-xl rounded-lg overflow-hidden">
               <img className="w-28 h-24 object-cover rounded mr-4" src={CDN_URL + item?.card?.info?.imageId} alt={item?.card?.info?.name} onError={handleImageError} />
               <div className="flex-1">
