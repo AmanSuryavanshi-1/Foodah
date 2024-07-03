@@ -15,11 +15,11 @@ const Navbar = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="flex items-center justify-between font-serif bg-primary-bgColor px-4 py-1">
+    <div className="flex items-center justify-between px-4 py-1 font-serif bg-primary-bgColor h-1/5">
       <div className="flex items-center">
         <Link to="/"> 
-        {/* <img className="h-20 w-36 my-2" src={mainLogo} alt="Logo" />  */}
-          <img className="h-24 w-24" src={mainLogo} alt="Logo" /> 
+        {/* <img className="h-20 my-2 w-36" src={mainLogo} alt="Logo" />  */}
+          <img className="w-24 h-24" src={mainLogo} alt="Logo" /> 
         </Link>
         
       </div>
@@ -28,25 +28,25 @@ const Navbar = () => {
         <ul className="flex space-x-4">
           <li className="flex items-center px-2 cursor-pointer text-primary-light hover:text-primary-white">
             <Link to="/about" className="flex items-center"> 
-              <LiaInfoSolid className="h-6 w-6 mr-1" /> 
+              <LiaInfoSolid className="w-6 h-6 mr-1" /> 
               About 
             </Link>
           </li>
           <li className="flex items-center px-2 cursor-pointer text-primary-light hover:text-primary-white">
             <Link to="/contact" className="flex items-center"> 
-              <IoCallOutline className="h-6 w-6 mr-1" /> 
+              <IoCallOutline className="w-6 h-6 mr-1" /> 
               Contact 
             </Link>
           </li>
           <li className="flex items-center px-2 cursor-pointer text-primary-light hover:text-primary-white">
             <Link to="/wishlist" className="flex items-center"> 
-              <MdOutlineFavoriteBorder className="h-6 w-6 mr-1" /> 
+              <MdOutlineFavoriteBorder className="w-6 h-6 mr-1" /> 
               Wishlist 
             </Link>
           </li>
           <li className="flex items-center px-2 cursor-pointer text-primary-light hover:text-primary-white">
             <Link to="/cart" className="flex items-center"> 
-              <MdOutlineAddShoppingCart className="h-6 w-6 mr-1" /> 
+              <MdOutlineAddShoppingCart className="w-6 h-6 mr-1" /> 
               Cart 
             </Link>
           </li>
@@ -55,7 +55,7 @@ const Navbar = () => {
             onClick={() => setBtnName(btnName === "Login" ? "Logout" : "Login")}
           >
             <Link to="/auth" className="flex items-center"> 
-              {btnName === "Login" ? <LuLogIn className="h-6 w-6 mr-1"/> : <CiLogout className="h-6 w-6 mr-2"/> }
+              {btnName === "Login" ? <LuLogIn className="w-6 h-6 mr-1"/> : <CiLogout className="w-6 h-6 mr-2"/> }
               {btnName} 
             </Link>
           </li>
@@ -64,7 +64,7 @@ const Navbar = () => {
             className="flex items-center px-2 cursor-pointer text-primary-light hover:text-primary-white" 
             title={onlineStatus ? "Connected to internet" : "Offline"}
           >
-            {onlineStatus ? <MdOutlineNetworkWifi className="h-6 w-6"/> : <RiSignalWifiOffLine className="h-6 w-6"/>}
+            {onlineStatus ? <MdOutlineNetworkWifi className="w-6 h-6"/> : <RiSignalWifiOffLine className="w-6 h-6"/>}
           </li>
         </ul>
       </div>

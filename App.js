@@ -13,11 +13,11 @@ import Error from './src/components/Error'
 
 // import Wishlist from './src/components/NavComponents/Wishlist'
 
-const wishlist = lazy(()=> import("./src/components/NavComponents/Wishlist"));
+const WL_recommendations = lazy(()=> import("./src/components/NavComponents/Wishlist"));
 
    const AppLayout = () => {
     return (
-    <div className='bg-primary-bgColor min-h-screen'>
+    <div className='min-h-screen bg-primary-bgColor'>
         <Navbar/>
         <Outlet />
     </div>
@@ -43,7 +43,7 @@ const wishlist = lazy(()=> import("./src/components/NavComponents/Wishlist"));
                   },
                   {
                      path:'/wishlist',
-                     element:<Suspense fallback={<h1  className='m-10 text-primary-light text-2xl font-semibold'>Resources are getting ready</h1>}> <wishlist /> </Suspense> ,
+                     element:<Suspense fallback={<h1  className='m-10 text-2xl font-semibold text-primary-light'>Resources are getting ready</h1>}> <WL_recommendations /> </Suspense> ,
                   },
                   {
                      path:'/cart',

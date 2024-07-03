@@ -39,25 +39,25 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
   if(onlineStatus === false) return (
     <div className="flex items-center justify-center min-h-screen bg-red-100">
-      <h1 className="text-xl font-semibold text-red-600 bg-red-200 p-4 rounded-md shadow-lg">
+      <h1 className="p-4 text-xl font-semibold text-red-600 bg-red-200 rounded-md shadow-lg">
         Looks like you are offline!! Please check your internet connection
       </h1>
     </div>
   );
   
   return listOfRestaurants.length == 0 ? <Shimmer/> : (
-    <div className="bg-primary-bgColor p-8 font-serif">
+    <div className="p-8 font-serif bg-primary-bgColor">
       <div className="mb-6">
         <div className="flex justify-center">
           <input
             type="text"
-            className="border-primary-grey rounded-2xl px-3 mx-8 w-1/3 justify-center shadow-sm"
+            className="justify-center w-1/3 px-3 mx-8 shadow-sm border-primary-grey rounded-2xl"
             placeholder="Search for restaurants..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
-            className="bg-primary-light text-primary-bgColor rounded-2xl px-6 py-2 hover:bg-primary-dark hover:text-primary-light transition"
+            className="px-6 py-2 transition bg-primary-light text-primary-bgColor rounded-2xl hover:bg-primary-dark hover:text-primary-light"
             onClick={() => {
               const searchedRestaurants = listOfRestaurants.filter((res) => {
                 return res.info.name.toLowerCase().includes(searchText.toLowerCase());
@@ -81,7 +81,7 @@ const Body = () => {
         >Top Rated Restaurants </button>
       </div> */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 px-12 mx-8">
+      <div className="grid grid-cols-1 gap-1 px-12 mx-8 sm:grid-cols-2 lg:grid-cols-4">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
             <RestaurantCard resInfo={restaurant} />
