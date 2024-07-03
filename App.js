@@ -10,6 +10,7 @@ import Contact from './src/components/NavComponents/Contact'
 import Cart from './src/components/NavComponents/Cart'
 import Auth from './src/components/NavComponents/Auth'
 import Error from './src/components/Error'
+import Footer from './src/components/Footer'
 
 // import Wishlist from './src/components/NavComponents/Wishlist'
 
@@ -20,6 +21,7 @@ const WL_recommendations = lazy(()=> import("./src/components/NavComponents/Wish
     <div className='min-h-screen bg-primary-bgColor'>
         <Navbar/>
         <Outlet />
+        <Footer/>
     </div>
         )
    };
