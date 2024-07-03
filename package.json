@@ -101,7 +101,7 @@
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
     "supports-color": "^7.2.0",
-    "svgo": "^2.8.0",
+    "svgo": "^3.3.2",
     "term-size": "^2.2.1",
     "timsort": "^0.3.0",
     "to-regex-range": "^5.0.1",
