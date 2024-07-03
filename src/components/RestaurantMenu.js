@@ -4,8 +4,8 @@ import { CDN_URL } from "../utils/constant";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import useFallbackImage from "../utils/useFallbackImage";
-import vegIcon from "../../assets/veg.png"; 
-import nonVegIcon from "../../assets/non-veg.png";
+import vegIcon from "../../Assets/veg.png"; 
+import nonVegIcon from "../../Assets/nonVeg.png";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
