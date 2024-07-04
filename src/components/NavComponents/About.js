@@ -4,10 +4,13 @@ import { FaAward } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
 import { VscFolderLibrary } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
+import Header from './Header/Header';
 
 const About = () => {
   return (
-    <section className="flex items-center justify-center mx-8 mb-4 h-80vh">
+    <div>
+    <Header/>
+    <div className="flex items-center justify-center mx-8 mb-4 h-80vh">
       <div className="w-full max-w-6xl px-4 mx-12">
         <h5 className="mb-2 text-xs text-center uppercase text-primary-yellow">Get To Know</h5>
         <h2 className="mb-4 font-serif text-3xl font-bold text-center text-primary-light">About Me</h2>
@@ -42,7 +45,7 @@ const About = () => {
         </div>
 
           <div className="flex justify-center mt-8">
-            <Link to="/contact" className="flex items-center justify-center px-8 py-2 transition duration-300 border-2 border-primary-light bg-primary-yellow rounded-xl text-primary-bgColor hover:bg-primary-light">
+            <Link to="/contact"  className="flex items-center justify-center px-5 py-3 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent">
               <button className='font-sans text-sm'>Let's Talk</button>
             </Link>
           </div>
@@ -58,8 +61,8 @@ const About = () => {
       </p>
     </div>
       </div>
-    </section>
-
+    </div>
+    </div>
   );
 }
 
