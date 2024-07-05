@@ -13,15 +13,7 @@ const Contact = () => {
     e.preventDefault();
 
     emailjs
-      .sendForm('service_vwbnobb', 'template_iz5pcva', form.current, 'I0BXSqsH7YBt5ciXX')
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+      .sendForm('service_ugqrpcu', 'template_iz5pcva', form.current, 'I0BXSqsH7YBt5ciXX')
 
     e.target.reset();
   };
