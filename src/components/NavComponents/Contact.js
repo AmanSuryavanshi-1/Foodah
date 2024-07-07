@@ -1,6 +1,5 @@
 import { HiOutlineMail } from 'react-icons/hi';
 import { BsWhatsapp } from 'react-icons/bs';
-import { CiLocationOn } from 'react-icons/ci';
 import React, { useRef } from 'react';
 import emailjs from 'emailjs-com';
 import { BsSend } from "react-icons/bs";
