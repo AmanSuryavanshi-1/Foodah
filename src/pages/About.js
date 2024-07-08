@@ -21,46 +21,44 @@ const About = () => {
     <>
     <Header/>
     <AboutMe/>
-    <div className="p-10 bg-primary-bgColor text-primary-white">
-  <h1 className="mb-12 text-4xl font-bold text-center text-primary-yellow">
-    About Me
-  </h1>
+    {/* <div className=" bg-primary-bgColor text-primary-white"> */}
 
-  <div className="mx-auto max-w-7xl">
-    <div className="overflow-hidden shadow-2xl bg-primary-dark bg-opacity-80 rounded-3xl backdrop-filter backdrop-blur-lg">
+  <div className="max-w-6xl mx-auto">
+    <div className="mx-12 overflow-hidden shadow-lg bg-primary-dark bg-opacity-80 rounded-3xl backdrop-filter backdrop-blur-lg">
       <div className="md:flex">
-        <div className="flex items-center justify-center p-8 bg-opacity-50 md:flex-shrink-0 bg-primary-grey">
+        <div className="flex items-center justify-center px-10 py-8 md:flex-shrink-0 bg-primary-yellow">
           <a href="https://github.com/AmanSuryavanshi-1" className="relative group">
             <img 
               src={userData?.avatar_url} 
               alt="Avatar" 
-              className="w-48 h-48 transition-all duration-300 border-4 rounded-full shadow-xl border-primary-yellow group-hover:border-primary-light"
+              className="w-48 h-48 transition-all duration-300 border-4 rounded-full shadow-xl border-primary-grey group-hover:border-primary-light"
             />
             <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 rounded-full opacity-0 bg-primary-bgColor bg-opacity-70 group-hover:opacity-100">
-              <FaGithub className="text-5xl text-primary-yellow" />
+              <FaGithub className="text-2xl text-primary-yellow" />
             </div>
           </a>
         </div>
-        <div className="p-8 md:p-12 lg:p-16">
+        <div className="p-6 md:p-8 lg:p-8">
           <div className="text-sm font-semibold tracking-wide uppercase text-primary-yellow">GitHub Profile</div>
           <h2 className="mt-2 font-serif text-4xl font-bold leading-8 tracking-tight text-primary-light">
             Aman Suryavanshi
           </h2>
-          <p className="mt-4 text-xl text-primary-light">
-            <span className="font-semibold">{userData?.public_repos}</span> Repos | 
-            <span className="ml-2 font-semibold">{userData?.followers}</span> Followers
+          <p className="mt-2 text-lg text-primary-light">
+            <span>{userData?.public_repos}</span> Repos | 
+            <span className="ml-2">{userData?.followers}</span> Followers
           </p>
-          <p className="mt-6 font-sans text-xl leading-7 text-primary-light">
+          <p className="pl-1 mt-2 font-sans text-lg leading-7 text-primary-light">
             {userData?.bio}
           </p>
-          <div className="mt-8">
+          <div className="mt-3">
             <a 
               href="https://github.com/AmanSuryavanshi-1" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="inline-flex items-center px-6 py-3 text-lg font-medium transition-all duration-300 border border-transparent rounded-full shadow-sm text-primary-bgColor bg-primary-yellow hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-yellow"
+              className="inline-flex items-center px-5 py-3 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light border-primary-yellow text-primary-light bg-primary-bgColor hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent "
             >
-              View GitHub Profile
+               {/* flex items-center justify-center px-5 py-3 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-bgColor text-primary-light border-primary-yellow hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"> */}
+              GitHub Profile
               <FaGithub className="ml-2 text-2xl" />
             </a>
           </div>
@@ -70,11 +68,11 @@ const About = () => {
 
 {/* <FaGithub className="text-lg text-primary-yellow" /> */}
 
-    <div className="p-8 mt-16 overflow-hidden shadow-2xl bg-primary-dark bg-opacity-80 rounded-3xl backdrop-filter backdrop-blur-lg sm:p-12">
-      <h2 className="mb-8 font-serif text-3xl font-bold text-center text-primary-yellow">
+    <div className="p-8 m-12 overflow-hidden shadow-lg bg-primary-dark bg-opacity-80 rounded-3xl backdrop-filter backdrop-blur-lg sm:p-12">
+      <h2 className="mb-8 font-serif text-3xl font-bold text-center text-primary-light">
         My GitHub Calendar
       </h2>
-      <div className="flex justify-center">
+      <div className="flex justify-center text-primary-yellow">
         <GitHubCalendar
           username="AmanSuryavanshi-1"
           blockSize={12}
@@ -86,26 +84,12 @@ const About = () => {
       </div>
     </div>
   </div>
-</div>
+{/* </div> */}
     </>
   );
 };
 
 export default About;
-
-
-// <div className="flex flex-col items-center">
-//       <h2 className="font-mono text-lg">{userData?.login}</h2>
-//       <div className="flex items-center mt-2 space-x-4">
-//         <span className="font-mono">{userData?.public_repos} repos</span>
-//         <span className="font-mono">{userData?.followers} followers</span>
-
-//       </div>
-//     </div>
-//     <p className="max-w-xs">{userData?.bio}</p>
-
-//   </div>
-// </div>
 
 {/* 
                             <div> <center><h3>My Most Popular Repositories on Github</h3></center></div>
@@ -115,8 +99,4 @@ export default About;
                                 ))}
                             </div>
                          */}
-                         {/* <p className="mb-4 text-gray-300">
-            I am passionate about creating delightful user experiences and building scalable applications.
-            This project showcases my skills in integrating with real-time data sources like Swiggy's live API.
-          </p> */}
     
