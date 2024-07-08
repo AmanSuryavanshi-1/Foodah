@@ -3,18 +3,18 @@ import ReactDOM from "react-dom/client"
 import "./App.css"
 import Body from './src/components/Body'
 import Navbar from "./src/components/Navbar"
-import RestaurantMenu from './src/components/RestaurantMenu'
+import RestaurantMenu from './src/pages/RestaurantMenu'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import About from './src/components/NavComponents/About'
-import Contact from './src/components/NavComponents/Contact'
-import Cart from './src/components/NavComponents/Cart'
-import Auth from './src/components/NavComponents/Auth'
-import Error from './src/components/Error'
+import About from './src/pages/About'
+import Contact from './src/pages/Contact'
+import Cart from './src/pages/Cart'
+import Auth from './src/pages/Auth'
+import Error from './src/pages/Error'
 import Footer from './src/components/Footer'
 
 // import Wishlist from './src/components/NavComponents/Wishlist'
 
-const WL_recommendations = lazy(()=> import("./src/components/NavComponents/Wishlist"));
+const WL_recommendations = lazy(()=> import("./src/pages/Wishlist"));
 
    const AppLayout = () => {
     return (
