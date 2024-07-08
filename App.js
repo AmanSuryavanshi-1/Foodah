@@ -11,6 +11,7 @@ import Cart from './src/pages/Cart'
 import Auth from './src/pages/Auth'
 import Error from './src/pages/Error'
 import Footer from './src/components/Footer'
+import ScrollToTop from './src/components/ScrollToTop'
 
 // import Wishlist from './src/components/NavComponents/Wishlist'
 
@@ -19,6 +20,7 @@ const WL_recommendations = lazy(()=> import("./src/pages/Wishlist"));
    const AppLayout = () => {
     return (
     <div className='min-h-screen bg-primary-bgColor'>
+      <ScrollToTop/>
         <Navbar/>
         <Outlet />
         <Footer/>
