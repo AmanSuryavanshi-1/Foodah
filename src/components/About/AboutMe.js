@@ -1,5 +1,5 @@
 import React from 'react'
-import img from '../../../Assets/me main.png'; // Ensure this path is correct
+import img from '../../../Assets/AS main.png'; // Ensure this path is correct
 import { FaAward } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
 import { VscFolderLibrary } from 'react-icons/vsc';
@@ -59,7 +59,8 @@ const AboutMe = () => {
     </div>
       </div>
     </div>
-   
+
+
   )
 }
 
