@@ -4,7 +4,7 @@ import GitHubCalendar from 'react-github-calendar';
 
 const GithubCalendar = () => {
   return (
-    <div className="p-8 mx-auto overflow-hidden sm:p-12">
+    <div className="p-8 mx-auto my-16 overflow-hidden sm:p-12">
     <h2 className="mb-8 font-serif text-3xl font-bold text-center text-primary-light">
         My GitHub Calendar
     </h2>
