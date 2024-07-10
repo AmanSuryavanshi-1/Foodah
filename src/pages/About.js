@@ -1,23 +1,37 @@
 import React, { useState } from 'react'
 import Header from '../components/Header/Header';
 import AboutMe from '../components/About/AboutMe';
-import Github from '../components/About/Github';
-
+import GithubProfile from '../components/About/GithubProfile'; 
+import RepoData from '../components/About/RepoData';
+import GithubCalendar from '../components/About/GithubCalendar';
+import { GrFormView } from "react-icons/gr";
+import { BiHide } from "react-icons/bi";
 const About = () => {
-  const [showHeaderAndAbout, setShowHeaderAndAbout] = useState(true);
+  const [showHeaderAndAbout, setShowHeaderAndAbout] = useState(false);
 
   const toggleHeaderAndAbout = () => {
     setShowHeaderAndAbout(!showHeaderAndAbout);
   };  
 
   return (
-    <>
-    <button 
-        onClick={toggleHeaderAndAbout}
-        className="fixed px-4 py-2 transition-colors duration-300 rounded-md shadow-md top-4 right-4 bg-primary-yellow text-primary-dark hover:bg-primary-light"
+    <div className="relative flex flex-col items-center min-h-screen">
+        <button
+          onClick={toggleHeaderAndAbout}
+          //   {showHeaderAndAbout ? "View Profile" :  "Hide Profile"}
+           className="inline-flex items-center px-6 py-2 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light border-primary-yellow text-primary-light bg-primary-bgColor hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
       >
-        {showHeaderAndAbout ? 'Hide Header & About' : 'Show Header & About'}
-      </button>
+        {showHeaderAndAbout ? (
+          <>
+            Hide Profile
+            <BiHide className="ml-2 text-2xl" />
+          </>
+        ) : (
+          <>
+            View Profile
+            <GrFormView className="ml-2 text-2xl" />
+          </>
+        )}
+        </button>
 
       {showHeaderAndAbout && (
         <>
@@ -25,19 +39,14 @@ const About = () => {
           <AboutMe />
         </>
       )}
-    <Github/>
-    </>
+
+      <div className='max-w-6xl'>
+        <RepoData />
+        <GithubProfile />
+        <GithubCalendar />
+      </div>
+    </div>
   );
 };
 
 export default About;
-
-{/* 
-                            <div> <center><h3>My Most Popular Repositories on Github</h3></center></div>
-                            <div className={styles.container}>
-                                {repos.map((repo) => (
-                                <RepoCard key={repo.id} repo={repo} />
-                                ))}
-                            </div>
-                         */}
-    

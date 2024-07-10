@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import GitHubCalendar from 'react-github-calendar';
 import { FaGithub } from 'react-icons/fa';
-import Skills from './Skills';
 
-const Github = () => {
+const GithubProfile = () => {
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
@@ -44,7 +42,7 @@ const Github = () => {
                             {userData?.bio}
                         </p>
                         <div className="mt-3">
-                            <a
+                           <a 
                                 href="https://github.com/AmanSuryavanshi-1"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -57,25 +55,8 @@ const Github = () => {
                     </div>
                 </div>
             </div>
-            <Skills/>
-
-            <div className="p-8 m-12 overflow-hidden shadow-lg bg-primary-dark bg-opacity-80 rounded-3xl backdrop-filter backdrop-blur-lg sm:p-12">
-                <h2 className="mb-8 font-serif text-3xl font-bold text-center text-primary-light">
-                    My GitHub Calendar
-                </h2>
-                <div className="flex justify-center text-primary-yellow">
-                    <GitHubCalendar
-                        username="AmanSuryavanshi-1"
-                        blockSize={12}
-                        blockMargin={5}
-                        fontSize={16}
-                        color="#FDDA24"
-                        className="calendar"
-                    />
-                </div>
-            </div>
         </div>
     );
 }
 
-export default Github;
+export default GithubProfile;
