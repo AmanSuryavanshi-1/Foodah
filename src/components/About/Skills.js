@@ -28,9 +28,9 @@ const TechTools = () => {
             <h3 className="mb-8 font-serif text-3xl font-bold text-center text-primary-light">
                 Tools & Technologies 
             </h3>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-1 md:grid-cols-4 lg:gap-6">
                 {skills.map((skill, index) => (
-                    <div key={index} className="flex flex-col items-center justify-center p-4 transition-all duration-300 transform rounded-lg shadow-md bg-primary-bgColor hover:scale-105 hover:shadow-lg">
+                    <div key={index} className="flex flex-col items-center justify-center p-4 m-2 transition-all duration-300 transform rounded-lg shadow-md bg-primary-bgColor hover:scale-105 hover:shadow-md hover:shadow-primary-light">
                         <skill.icon className="text-5xl text-primary-yellow animate-bounce" />
                         <span className="mt-2 text-sm font-semibold text-primary-light">{skill.name}</span>
                     </div>

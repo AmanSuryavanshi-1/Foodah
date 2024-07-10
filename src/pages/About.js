@@ -40,7 +40,7 @@ const About = () => {
         </>
       )}
 
-      <div className='max-w-6xl'>
+      <div>
         <RepoData />
         <GithubProfile />
         <GithubCalendar />

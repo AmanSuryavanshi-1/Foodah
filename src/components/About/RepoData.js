@@ -19,7 +19,7 @@ const RepoData = () => {
     }
 
     return (
-        <div className="p-8 m-12 overflow-hidden shadow-lg bg-primary-dark bg-opacity-80 rounded-3xl backdrop-filter backdrop-blur-lg">
+        <div className="p-8 m-12">
             <h2 className="mb-4 font-serif text-3xl font-bold text-center text-primary-light">
                 Featured Repository: Foodah
             </h2>
