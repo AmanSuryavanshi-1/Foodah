@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import ReactDOM from "react-dom/client"
 import "./App.css"
-import Body from './src/components/Body'
+import Body from './src/pages/Body'
 import Navbar from "./src/components/Navbar"
 import RestaurantMenu from './src/pages/RestaurantMenu'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
