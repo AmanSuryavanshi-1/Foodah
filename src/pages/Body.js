@@ -46,6 +46,8 @@ const Body = () => {
   );
   
   return listOfRestaurants.length == 0 ? <Shimmer/> : (
+    
+  // ~ FILTER BY SEARCH
     <div className="p-8 font-serif bg-primary-bgColor">
       <div className="mb-6">
         <div className="flex justify-center">
@@ -70,17 +72,29 @@ const Body = () => {
         </div>
       </div>
 
-      {/* <div className="filter" >
+{/* FILTER BY RATING - Top Rated Restaurants */}
+      <div className="cursor-pointer bg-primary-yellow">
         <button className='filter-btn'
         onClick={()=>{
           const filteredList = listOfRestaurants.filter((res) =>{
-            return res.info.avgRating <= 4.5;
+            return res.info.avgRating >= 4.5;
           })
-          setListOfRestaurants(filteredList);
+          setFilteredRestaurants(filteredList);
         }}
         >Top Rated Restaurants </button>
-      </div> */}
+      </div>
 
+{/* RESET FILTERS */}
+      <div className="w-20 cursor-pointer bg-primary-yellow">
+        <button className='filter-btn'
+        onClick={()=>{
+          setFilteredRestaurants(listOfRestaurants);
+          setSearchText(""); // Clear the search text
+        }}
+        >Reset Filters </button>
+      </div>
+
+{/* RESTAURANT CARDS */}
       <div className="grid grid-cols-1 gap-1 px-12 mx-8 sm:grid-cols-2 lg:grid-cols-4">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
