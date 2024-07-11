@@ -4,6 +4,7 @@ import Shimmer from './Shimmer'
 import { menuAPI_URL } from '../utils/constant'
 import { Link } from 'react-router-dom'
 import useOnlineStatus from '../utils/useOnlineStatus'
+import { FaSearch } from "react-icons/fa";
 
 const Body = () => {
   const [listOfRestaurants , setListOfRestaurants] = useState([]);
@@ -48,18 +49,19 @@ const Body = () => {
   return listOfRestaurants.length == 0 ? <Shimmer/> : (
     
   // ~ FILTER BY SEARCH
-    <div className="p-8 font-serif bg-primary-bgColor">
-      <div className="mb-6">
-        <div className="flex justify-center">
+    <div className="p-8 font-serif mx-28 bg-primary-bgColor">
+      <div className="mx-4 mb-6">
+        <div className="flex flex-col justify-between space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+        <div className="flex sm:w-auto">
           <input
             type="text"
-            className="justify-center w-1/3 px-3 mx-8 shadow-sm border-primary-grey rounded-2xl"
+            className="justify-center w-11/12 px-4 mr-2 shadow-sm border-primary-grey rounded-2xl"
             placeholder="Search for restaurants..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
-            className="px-6 py-2 transition bg-primary-light text-primary-bgColor rounded-2xl hover:bg-primary-dark hover:text-primary-light"
+            className="inline-flex items-center px-4 py-2 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light border-primary-yellow text-primary-light bg-primary-bgColor hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
             onClick={() => {
               const searchedRestaurants = listOfRestaurants.filter((res) => {
                 return res.info.name.toLowerCase().includes(searchText.toLowerCase());
@@ -67,14 +69,12 @@ const Body = () => {
               setFilteredRestaurants(searchedRestaurants);
             }}
           >
-            Search
+            Search <FaSearch className="ml-2 text-sm"/>
           </button>
-        </div>
-      </div>
-
+          </div>
 {/* FILTER BY RATING - Top Rated Restaurants */}
-      <div className="cursor-pointer bg-primary-yellow">
-        <button className='filter-btn'
+<div className="flex flex-col w-full sm:w-auto sm:flex-row sm:space-x-2">
+        <button className="flex items-center justify-center px-4 py-2 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
         onClick={()=>{
           const filteredList = listOfRestaurants.filter((res) =>{
             return res.info.avgRating >= 4.5;
@@ -82,20 +82,21 @@ const Body = () => {
           setFilteredRestaurants(filteredList);
         }}
         >Top Rated Restaurants </button>
-      </div>
+      {/* </div> */}
 
 {/* RESET FILTERS */}
-      <div className="w-20 cursor-pointer bg-primary-yellow">
-        <button className='filter-btn'
+      {/* <div className="flex justify-center mt-8"> */}
+        <button className="flex items-center justify-center px-4 py-2 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
         onClick={()=>{
           setFilteredRestaurants(listOfRestaurants);
           setSearchText(""); // Clear the search text
         }}
         >Reset Filters </button>
       </div>
-
+</div>
+</div>
 {/* RESTAURANT CARDS */}
-      <div className="grid grid-cols-1 gap-1 px-12 mx-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
             <RestaurantCard resInfo={restaurant} />
