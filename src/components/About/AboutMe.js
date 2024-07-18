@@ -16,7 +16,7 @@ const AboutMe = () => {
           <div className="relative flex items-center justify-center mb-4">
             <div className="absolute shadow-lg shadow-primary-light w-72 h-64 bg-primary-yellow rounded-2xl transform transition duration-300 hover:rotate-[-10deg]"></div>
             <div className="w-72 h-64 overflow-hidden transform rotate-[-5deg] duration-300 bg-white shadow-lg rounded-2xl transition hover:rotate-0">
-              <img src={img} alt="AboutImage" className="object-cover w-full h-full" />
+              <img src={img} loading='eager' alt="AboutImage" className="object-cover w-full h-full" />
             </div>
           </div>
 

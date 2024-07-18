@@ -14,6 +14,7 @@ const Header = () => {
             <img
               src={profileImage}
               alt="Profile"
+              loading='eager'
               className="object-cover w-full h-full border-8 shadow-inner border-primary-yellow"
               style={{ animation: "profile__animate 8s ease-in-out infinite 1s" }}
             />

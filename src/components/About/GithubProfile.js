@@ -21,6 +21,7 @@ const GithubProfile = () => {
                         <a href="https://github.com/AmanSuryavanshi-1" className="relative group">
                             <img
                                 src={userData?.avatar_url}
+                                loading='lazy'
                                 alt="Avatar"
                                 className="w-48 h-48 transition-all duration-300 border-4 rounded-full shadow-primary-light border-primary-light group-hover:border-primary-light"
                             />
