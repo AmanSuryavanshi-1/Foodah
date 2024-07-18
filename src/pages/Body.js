@@ -96,7 +96,7 @@ const Body = () => {
 </div>
 </div>
 {/* RESTAURANT CARDS */}
-      <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid min-h-screen grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
             <RestaurantCard resInfo={restaurant} />
