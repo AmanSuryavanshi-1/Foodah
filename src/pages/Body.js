@@ -97,11 +97,21 @@ const Body = () => {
 </div>
 {/* RESTAURANT CARDS */}
       <div className="grid min-h-screen grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
-        {filteredRestaurants.map((restaurant) => (
+        
+        {/* {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
             <RestaurantCard resInfo={restaurant} />
           </Link>
-        ))}
+        ))} */}
+        {filteredRestaurants.length === 0 ? (
+            <h2 className="text-xl text-gray-600">No restaurants found for "{searchText}"</h2>
+          ) : (
+        filteredRestaurants.map((restaurant) => (
+          <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
+            <RestaurantCard resInfo={restaurant} />
+          </Link>
+        ))
+         )}
       </div>
     </div>
   )
