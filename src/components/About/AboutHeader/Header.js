@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderSocial from './HeaderSocial';
 import Data from './Data';
-import profileImage from '../../../Assets/AS Github.png';
+import profileImage from '../../../../Assets/AS Github.png';
 
 const Header = () => {
   return (
