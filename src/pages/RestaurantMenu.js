@@ -4,8 +4,6 @@ import { CDN_URL } from "../utils/constant";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import useFallbackImage from "../utils/useFallbackImage";
-import vegIcon from "../../Assets/veg.png"; 
-import nonVegIcon from "../../Assets/nonVeg.png";
 import RestaurantCategory from "../components/RestaurantCategory";
 
 const RestaurantMenu = () => {
@@ -61,6 +59,7 @@ const RestaurantMenu = () => {
         <div className="grid grid-cols-1 gap-4 mt-12">
           {/* Showing Categories  */}
         {categories.map((i)=> (<RestaurantCategory key={i?.card?.card?.title} catData={i?.card?.card} />))}
+        {nestedCategories.map((i) => (<RestaurantCategory key={i?.card?.card?.title} catData={i?.card?.card} />))}
         </div>
       </div>
     </div>

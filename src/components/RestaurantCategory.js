@@ -10,19 +10,21 @@ const RestaurantCategory = ({ catData }) => {
         // setShowDropdown(true);
         setShowDropdown(!showDropdown); // for toggle feature of drop down menu
     }
-
-    console.log(catData);
+    // console.log(catData);
   return (
-    <div className='mb-5 bg-primary-grey'>
+    <div className='mb-5 bg-primary-grey text-primary-yellow'>
         <div className='mb-5 cursor-pointer' onClick={handleClick}>
             <h1>
                 {/* header */}
-                <span>{catData?.title} ({catData?.itemCards?.length}) </span> 
+                <p>{catData?.title}   
+                    <span>  ({catData?.itemCards?.length ? catData?.itemCards.length : catData?.categories?.length || 0})  </span>
+                </p> 
                 <span className='text-2xl text-primary-yellow'
                 > {showDropdown ? <MdExpandLess /> : <MdExpandMore />} </span>
             </h1>
         </div>
-    {showDropdown && <RestaurantItemList itemCardsData={catData?.itemCards} />}
+    { showDropdown && <RestaurantItemList itemCardsData={catData?.itemCards} />}
+    { showDropdown && <RestaurantItemList itemCardsData={catData?.categories} />}
     </div>
   )
 }

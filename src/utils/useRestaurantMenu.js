@@ -15,7 +15,7 @@ const useRestaurantMenu = (resId) => {
     const fetchMenu = async () => {
         const data = await fetch (resAPI_URL+ resId); 
         const response = await data.json();
-        console.log(response);
+        // console.log(response);
 
         const restaurantData = response?.data?.cards[2]?.card?.card?.info;  
         setRes(restaurantData);
@@ -31,11 +31,11 @@ const useRestaurantMenu = (resId) => {
 
         const categoriesData = response?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter( (i) => i.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" );
         setCategories(categoriesData);
-        // console.log(categoriesData);
+        console.log(categoriesData);
 
         const nestedCategoriesData = response?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter( (i) => i.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory" );
-        console.log(nestedCategoriesData);
         setNestedCategories(nestedCategoriesData);
+        console.log(nestedCategoriesData);
   };
   return [ res, categories, nestedCategories]
 }
