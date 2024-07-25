@@ -6,10 +6,11 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import useFallbackImage from "../utils/useFallbackImage";
 import vegIcon from "../../Assets/veg.png"; 
 import nonVegIcon from "../../Assets/nonVeg.png";
+import RestaurantCategory from "../components/RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  const [res, menuItems] = useRestaurantMenu(resId);
+  const [res,  categories, nestedCategories] = useRestaurantMenu(resId);
   const handleImageError = useFallbackImage();
 
   return res === null ? (
@@ -58,39 +59,8 @@ const RestaurantMenu = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-4 mt-12">
-          <h1 className="font-serif text-xl font-bold text-primary-light">{menuItems?.title}</h1>
-          {menuItems?.itemCards.map((item, index) => (
-            <div key={index} className="flex items-center p-4 pt-0 mt-0 overflow-hidden rounded-lg shadow-xl">
-              <img className="object-cover w-32 h-32 mr-4 rounded" src={CDN_URL + item?.card?.info?.imageId} alt={item?.card?.info?.name} onError={handleImageError} />
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-primary-light">
-                    {item?.card?.info?.name}
-                  </h3>
-                  <img
-                      src={item?.card?.info?.itemAttribute?.vegClassifier === "VEG" ? vegIcon : nonVegIcon}
-                      alt={item?.card?.info?.itemAttribute?.vegClassifier === "VEG" ? "Veg" : "Non-Veg"}
-                      className="inline-block w-6 h-6 ml-2"
-                    />
-                </div>
-                <span className="text-primary-white">
-                    {item?.card?.info?.defaultPrice > 0
-                      ? new Intl.NumberFormat("en-IN", {
-                          style: "currency",
-                          currency: "INR",
-                        }).format(item?.card?.info?.defaultPrice / 100)
-                      : " "}
-                  </span>
-                  <p className="text-sm text-green-600">★ {item?.card?.info?.ratings?.aggregatedRating?.rating} ({item?.card?.info?.ratings?.aggregatedRating?.ratingCount})</p>
-
-                <div className="flex items-center justify-between">
-                <p className="mb-2 mr-12 text-sm text-primary-light">{item?.card?.info?.description}</p>
-
-                  <button className="px-3 py-1 transition duration-300 rounded shadow-md bg-primary-yellow text-primary-bgColor hover:bg-primary-light">ADD</button>
-                </div>
-              </div>
-            </div>
-          ))}
+          {/* Showing Categories  */}
+        {categories.map((i)=> (<RestaurantCategory key={i?.card?.card?.title} catData={i?.card?.card} />))}
         </div>
       </div>
     </div>
