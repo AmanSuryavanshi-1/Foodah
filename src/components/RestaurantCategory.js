@@ -11,28 +11,29 @@ const RestaurantCategory = ({ catData }) => {
         setShowDropdown(!showDropdown); // for toggle feature of drop down menu
     }
     // console.log(catData);
+    
     // Check if catData.categories is an array
-    const nestedCategories = Array.isArray(catData?.categories) ? catData.categories : [];
+    const nestedCat = Array.isArray(catData?.categories) ? catData.categories : [];
 
     return (
-        <div className="mb-8 overflow-hidden rounded-lg shadow-lg bg-primary-grey">
+        <div className="mb-4 overflow-hidden rounded-lg shadow-lg bg-primary-yellow">
             <div 
-                className="p-4 transition-colors duration-300 cursor-pointer hover:bg-primary-dark"
+                className="px-8 py-3 transition-colors duration-300 cursor-pointer bg-primary-yellow hover:bg-primary-light"
                 onClick={handleClick}
             >
-                <h1 className="flex items-center justify-between font-serif text-lg font-bold sm:text-xl md:text-2xl text-primary-light">
+                <h1 className="flex items-center justify-between font-serif font-bold sm:text-lg md:text-xl text-primary-bgColor">
                     <p>
                         {catData?.title}   
-                        <span>({catData?.itemCards?.length || nestedCategories.length || 0})</span>
+                        <span> ({catData?.itemCards?.length || nestedCat.length || 0})</span>
                     </p> 
-                    <span className="text-2xl sm:text-3xl text-primary-yellow">
+                    <span className="text-2xl sm:text-3xl text-primary-bgColor">
                         {showDropdown ? <MdExpandLess /> : <MdExpandMore />}
                     </span>
                 </h1>
             </div>
             {showDropdown && <RestaurantItemList itemCardsData={catData?.itemCards} />}
             {/* Map through nested categories if they exist */}
-            {showDropdown && nestedCategories.map((i, index) => (
+            {showDropdown && nestedCat.map((i, index) => (
                 <RestaurantItemList key={index} itemCardsData={i.itemCards} />
             ))}
         </div>
