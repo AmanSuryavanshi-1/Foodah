@@ -10,10 +10,16 @@ import { Link } from 'react-router-dom';
 import { IoCallOutline } from "react-icons/io5";
 import { RiSignalWifiOffLine } from "react-icons/ri";
 import { MdOutlineNetworkWifi } from "react-icons/md";
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  
+  // Adding Redux to the Navbar
+  const cartItems = useSelector((store)=> store.cart.items); 
+  console.log(cartItems);
+
   return (
     <div className="flex items-center justify-between px-4 py-1 font-serif bg-primary-bgColor h-1/5">
       <div className="flex items-center">
@@ -44,11 +50,13 @@ const Navbar = () => {
               Wishlist 
             </Link>
           </li>
+          {/* Fetching length of items in cartSlice */}
           <li className="flex items-center px-2 cursor-pointer text-primary-light hover:text-primary-white">
             <Link to="/cart" className="flex items-center"> 
               <MdOutlineAddShoppingCart className="w-6 h-6 mr-1" /> 
-              Cart 
+              Cart  ({cartItems.length})
             </Link>
+           
           </li>
           <li 
             className="flex items-center px-2 cursor-pointer text-primary-light hover:text-primary-white" 

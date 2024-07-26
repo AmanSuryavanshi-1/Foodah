@@ -3,10 +3,17 @@ import { CDN_URL } from "../utils/constant";
 import vegIcon from "../../Assets/veg.png"; 
 import nonVegIcon from "../../Assets/nonVeg.png";
 import useFallbackImage from "../utils/useFallbackImage";
-
+import { useDispatch } from 'react-redux';
+import { addItem } from '../utils/cartSlice';
 const RestaurantItemList = ({ itemCardsData }) => {
     const handleImageError = useFallbackImage();
     
+    //  using redux for pushing item to cartSlice
+    const dispatch = useDispatch();
+    const handleDispatchClick = (i) => {
+        dispatch(addItem(i)); 
+    }
+
   return (
     <div className="p-4 space-y-6">
       <h1 className="mb-4 font-serif text-xl font-bold text-primary-light">{itemCardsData?.title}</h1>
@@ -46,7 +53,10 @@ const RestaurantItemList = ({ itemCardsData }) => {
                     <p className="mb-2 text-sm text-primary-light sm:mb-0 sm:mr-4 line-clamp-2">
                         {i?.card?.info?.description}
                     </p>
-                    <button className="px-4 py-2 font-semibold transition duration-300 rounded-full bg-primary-yellow text-primary-bgColor hover:bg-primary-light hover:text-primary-dark focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-opacity-50">
+                    {/* Adding item to cartSlice */}
+                    <button className="px-4 py-2 font-semibold transition duration-300 rounded-full bg-primary-yellow text-primary-bgColor hover:bg-primary-light hover:text-primary-dark focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-opacity-50"
+                     onClick={() => handleDispatchClick(i)}
+                    >
                         ADD
                     </button>
                 </div>

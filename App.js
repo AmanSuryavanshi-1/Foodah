@@ -12,6 +12,8 @@ import Auth from './src/pages/Auth'
 import Error from './src/pages/Error'
 import Footer from './src/components/Footer'
 import ScrollToTop from './src/components/ScrollToTop'
+import { Provider } from 'react-redux'
+import appStore from './src/utils/appStore'
 
 // import Wishlist from './src/components/NavComponents/Wishlist'
 
@@ -19,12 +21,14 @@ const WL_recommendations = lazy(()=> import("./src/pages/Wishlist"));
 
    const AppLayout = () => {
     return (
+   <Provider store={appStore}> 
     <div className='min-h-screen bg-primary-bgColor'>
       <ScrollToTop/>
         <Navbar/>
         <Outlet />
         <Footer/>
     </div>
+    </Provider>
         )
    };
 
