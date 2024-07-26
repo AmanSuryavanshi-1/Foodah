@@ -18,6 +18,7 @@ const RestaurantItemList = ({ itemCardsData }) => {
                 src={CDN_URL + i?.card?.info?.imageId} 
                 alt={i?.card?.info?.name} 
                 onError={handleImageError} 
+                loading='lazy'
             />
             <div className="flex-1 w-full">
                 <div className="flex items-center justify-between mb-2">
