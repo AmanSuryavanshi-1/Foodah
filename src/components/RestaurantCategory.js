@@ -18,15 +18,15 @@ const RestaurantCategory = ({ catData }) => {
     return (
         <div className="mb-4 overflow-hidden">
             <div 
-                className="px-8 py-3 transition-colors duration-300 rounded-lg cursor-pointer bg-primary-yellow hover:bg-primary-light"
+                className="px-6 py-2 transition-colors duration-500 border-2 cursor-pointer shadow-primary-light rounded-xl border-primary-light bg-primary-bgColor hover:bg-primary-dark"
                 onClick={handleClick}
             >
-                <h1 className="flex items-center justify-between font-serif font-bold sm:text-lg md:text-xl text-primary-bgColor">
+                <h1 className="flex items-center justify-between font-serif font-bold sm:text-lg md:text-xl text-primary-light">
                     <p>
                         {catData?.title}   
                         <span> ({catData?.itemCards?.length || nestedCat.length || 0})</span>
                     </p> 
-                    <span className="text-2xl sm:text-3xl text-primary-bgColor">
+                    <span className="text-2xl sm:text-3xl text-primary-yellow">
                         {showDropdown ? <MdExpandLess /> : <MdExpandMore />}
                     </span>
                 </h1>

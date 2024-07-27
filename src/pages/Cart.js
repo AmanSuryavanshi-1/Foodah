@@ -20,11 +20,11 @@ const Cart = () => {
   return (
     <div className="min-h-screen font-sans bg-primary-bgColor text-primary-white">
       <div className="max-w-4xl p-6 mx-auto">
-        <h1 className="mb-8 text-3xl font-bold text-primary-yellow">Your Cart</h1>
+        <h1 className="font-serif text-3xl font-bold text-primary-light">Your Cart</h1>
         
         {cartItems.length > 0 ? (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="p-6 rounded-lg md:col-span-2 bg-primary-grey">
+            <div className="rounded-lg md:col-span-2 bg-primary-bgColor">
               <RestaurantItemList 
                 itemCardsData={cartItems} 
                 isCart={true} 
@@ -37,8 +37,8 @@ const Cart = () => {
               </button>
             </div>
             
-            <div className="md:col-span-1">
-              <div className="sticky p-6 rounded-lg bg-primary-grey top-6">
+            <div className="mt-8 md:col-span-1">
+              <div className="sticky p-6 rounded-lg bg-primary-dark top-6">
                 <h2 className="mb-4 text-xl font-semibold">Order Summary</h2>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">

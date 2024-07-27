@@ -18,11 +18,11 @@ const RestaurantItemList = ({ itemCardsData , isCart = false}) => {
     }
 
   return (
-    <div className="p-4 space-y-6">
+    <div className="p-2 space-y-6 ">
       <h1 className="mb-4 font-serif text-xl font-bold text-primary-light">{itemCardsData?.title}</h1>
     
           {itemCardsData?.map((i, index) => (
-            <div key={index} className="flex flex-col items-center p-4 transition-transform duration-300 rounded-lg shadow-xl sm:flex-row bg-primary-bgColor ">
+            <div key={index} className="flex flex-col items-center p-4 transition-transform duration-300 rounded-lg shadow-xl sm:flex-row bg-primary-dark">
             <img 
                 className="object-cover w-full h-32 mb-4 rounded-lg sm:w-32 sm:mb-0 sm:mr-4" 
                 src={CDN_URL + i?.card?.info?.imageId} 
@@ -57,7 +57,7 @@ const RestaurantItemList = ({ itemCardsData , isCart = false}) => {
                         {i?.card?.info?.description}
                     </p>
                     {/* Adding item to cartSlice */}
-                    <button className="flex items-center justify-center px-5 py-2 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
+                    <button className="flex items-center justify-center px-5 py-2 text-sm transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
                      onClick={() => isCart ? handleRemoveClick(index) : handleAddClick(i)}
                     //  onRemoveItem={handleRemoveItem}
                     >
