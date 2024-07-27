@@ -22,7 +22,7 @@ const RestaurantItemList = ({ itemCardsData , isCart = false}) => {
       <h1 className="mb-4 font-serif text-xl font-bold text-primary-light">{itemCardsData?.title}</h1>
     
           {itemCardsData?.map((i, index) => (
-            <div key={index} className="flex flex-col items-center p-4 transition-transform duration-300 rounded-lg shadow-xl sm:flex-row bg-primary-bgColor hover:scale-105">
+            <div key={index} className="flex flex-col items-center p-4 transition-transform duration-300 rounded-lg shadow-xl sm:flex-row bg-primary-bgColor ">
             <img 
                 className="object-cover w-full h-32 mb-4 rounded-lg sm:w-32 sm:mb-0 sm:mr-4" 
                 src={CDN_URL + i?.card?.info?.imageId} 
@@ -57,7 +57,7 @@ const RestaurantItemList = ({ itemCardsData , isCart = false}) => {
                         {i?.card?.info?.description}
                     </p>
                     {/* Adding item to cartSlice */}
-                    <button className="px-4 py-2 font-semibold transition duration-300 rounded-full bg-primary-yellow text-primary-bgColor hover:bg-primary-light hover:text-primary-dark focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-opacity-50"
+                    <button className="flex items-center justify-center px-5 py-2 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
                      onClick={() => isCart ? handleRemoveClick(index) : handleAddClick(i)}
                     //  onRemoveItem={handleRemoveItem}
                     >

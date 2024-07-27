@@ -56,7 +56,7 @@ const RestaurantMenu = () => {
           </div>
         </div>
 
-        <div className="w-full max-w-4xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
+        <div className="w-full px-4 py-8 mx-auto">
           {/* Showing Categories  */}
         {categories.map((i)=> (<RestaurantCategory key={i?.card?.card?.title} catData={i?.card?.card} />))}
         {nestedCategories.map((i) => (<RestaurantCategory key={i?.card?.card?.title} catData={i?.card?.card} />))}

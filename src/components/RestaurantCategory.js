@@ -16,9 +16,9 @@ const RestaurantCategory = ({ catData }) => {
     const nestedCat = Array.isArray(catData?.categories) ? catData.categories : [];
 
     return (
-        <div className="mb-4 overflow-hidden rounded-lg shadow-lg bg-primary-yellow">
+        <div className="mb-4 overflow-hidden">
             <div 
-                className="px-8 py-3 transition-colors duration-300 cursor-pointer bg-primary-yellow hover:bg-primary-light"
+                className="px-8 py-3 transition-colors duration-300 rounded-lg cursor-pointer bg-primary-yellow hover:bg-primary-light"
                 onClick={handleClick}
             >
                 <h1 className="flex items-center justify-between font-serif font-bold sm:text-lg md:text-xl text-primary-bgColor">
