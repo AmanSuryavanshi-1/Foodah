@@ -5,70 +5,70 @@ import nonVegIcon from "../../Assets/nonVeg.png";
 import useFallbackImage from "../utils/useFallbackImage";
 import { useDispatch } from 'react-redux';
 import { addItem, removeItem } from '../utils/cartSlice';
-const RestaurantItemList = ({ itemCardsData , isCart = false}) => {
+
+const RestaurantItemList = ({ itemCardsData, isCart = false }) => {
     const handleImageError = useFallbackImage();
-    
-    //  using redux for pushing item to cartSlice
     const dispatch = useDispatch();
+
     const handleAddClick = (i) => {
         dispatch(addItem(i)); 
     }
-    const handleRemoveClick = (index) =>{
+
+    const handleRemoveClick = (index) => {
         dispatch(removeItem(index));
     }
 
-  return (
-    <div className="p-2 space-y-6 ">
-      <h1 className="mb-4 font-serif text-xl font-bold text-primary-light">{itemCardsData?.title}</h1>
-    
-          {itemCardsData?.map((i, index) => (
-            <div key={index} className="flex flex-col items-center p-4 transition-transform duration-300 rounded-lg shadow-xl sm:flex-row bg-primary-dark">
-            <img 
-                className="object-cover w-full h-32 mb-4 rounded-lg sm:w-32 sm:mb-0 sm:mr-4" 
-                src={CDN_URL + i?.card?.info?.imageId} 
-                alt={i?.card?.info?.name} 
-                onError={handleImageError} 
-                loading='lazy'
-            />
-            <div className="flex-1 w-full">
-                <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-semibold truncate text-primary-light">
-                        {i?.card?.info?.name}
-                    </h3>
-                    <img
-                        src={i?.card?.info?.itemAttribute?.vegClassifier === "VEG" ? vegIcon : nonVegIcon}
-                        alt={i?.card?.info?.itemAttribute?.vegClassifier === "VEG" ? "Veg" : "Non-Veg"}
-                        className="w-6 h-6 ml-2"
-                    />
+    return (
+        <div className="p-4 space-y-8">
+            <h1 className="mb-6 font-serif text-2xl font-bold text-primary-light">{itemCardsData?.title}</h1>
+
+            {itemCardsData?.map((i, index) => (
+                <div key={index} className="flex items-center p-4 transition-transform duration-300 border-b border-primary-grey last:border-b-0">
+                    <div className="flex-1 pr-4">
+                        <div className="flex items-center mb-2">
+                            <img
+                                src={i?.card?.info?.itemAttribute?.vegClassifier === "VEG" ? vegIcon : nonVegIcon}
+                                alt={i?.card?.info?.itemAttribute?.vegClassifier === "VEG" ? "Veg" : "Non-Veg"}
+                                className="w-4 h-4 mr-2"
+                            />
+                            <h3 className="text-lg font-semibold text-primary-light">
+                                {i?.card?.info?.name}
+                            </h3>
+                        </div>
+                        <span className="text-base font-bold text-primary-white">
+                            ₹{(i?.card?.info?.defaultPrice || i?.card?.info?.price > 0)
+                                ? ((i?.card?.info?.defaultPrice || i?.card?.info?.price) / 100).toFixed(2)
+                                : " "}
+                        </span>
+                        <p className="mt-1 text-sm text-green-600">
+                            ★ {i?.card?.info?.ratings?.aggregatedRating?.rating}
+                            {i?.card?.info?.ratings?.aggregatedRating?.ratingCount
+                                ? ` (${i?.card?.info?.ratings?.aggregatedRating?.ratingCount})`
+                                : " No ratings yet"}
+                        </p>
+                        <p className="mt-2 text-sm text-primary-light line-clamp-2">
+                            {i?.card?.info?.description}
+                        </p>
+                    </div>
+                    <div className="relative w-32 h-24">
+                        <img 
+                            className="object-cover w-full h-full rounded-lg" 
+                            src={CDN_URL + i?.card?.info?.imageId} 
+                            alt={i?.card?.info?.name} 
+                            onError={handleImageError} 
+                            loading='lazy'
+                        />
+                        <button 
+                            className="absolute px-4 py-1 text-sm font-semibold transition-all duration-300 rounded-md shadow-md right-4 top-3/4 bg-primary-yellow text-primary-bgColor hover:bg-primary-light"
+                            onClick={() => isCart ? handleRemoveClick(index) : handleAddClick(i)}
+                        >
+                            {isCart ? "REMOVE" : "ADD"}
+                        </button>
+                    </div>
                 </div>
-                <span className="text-lg font-bold text-primary-white">
-                    ₹{(i?.card?.info?.defaultPrice || i?.card?.info?.price > 0)
-                        ? ((i?.card?.info?.defaultPrice || i?.card?.info?.price) / 100).toFixed(2)
-                        : " "}
-                </span>
-                <p className="mt-1 text-sm text-green-600">
-                    ★ {i?.card?.info?.ratings?.aggregatedRating?.rating}
-                    {i?.card?.info?.ratings?.aggregatedRating?.ratingCount
-                        ? ` (${i?.card?.info?.ratings?.aggregatedRating?.ratingCount})`
-                        : " No ratings yet"}
-                </p>
-                <div className="flex flex-col items-start justify-between mt-2 sm:flex-row sm:items-center">
-                    <p className="mb-2 text-sm text-primary-light sm:mb-0 sm:mr-4 line-clamp-2">
-                        {i?.card?.info?.description}
-                    </p>
-                    {/* Adding item to cartSlice */}
-                    <button className="flex items-center justify-center px-5 py-2 text-sm transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
-                     onClick={() => isCart ? handleRemoveClick(index) : handleAddClick(i)}
-                    //  onRemoveItem={handleRemoveItem}
-                    >
-                         {isCart ? "REMOVE" : "ADD"}
-                    </button>
-                </div>
-            </div>
+            ))} 
         </div>
-          ))} 
-    </div>
-  )
+    )
 }
 
 export default RestaurantItemList

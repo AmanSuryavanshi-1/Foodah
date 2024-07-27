@@ -60,9 +60,9 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-                <button className="w-full px-4 py-3 mt-6 font-semibold transition-colors rounded-full bg-primary-yellow text-primary-dark hover:bg-primary-light">
-                  Proceed to Checkout
-                </button>
+                <button className="flex items-center justify-center w-full px-5 py-2 mt-6 font-serif transition-all duration-300 border-2 border-transparent cursor-pointer rounded-2xl bg-gradient-to-r from-primary-light to-primary-yellow text-primary-bgColor hover:bg-primary-yellow hover:text-primary-grey">
+  Proceed to Checkout
+</button>
               </div>
             </div>
           </div>
