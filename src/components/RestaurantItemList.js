@@ -4,14 +4,17 @@ import vegIcon from "../../Assets/veg.png";
 import nonVegIcon from "../../Assets/nonVeg.png";
 import useFallbackImage from "../utils/useFallbackImage";
 import { useDispatch } from 'react-redux';
-import { addItem } from '../utils/cartSlice';
-const RestaurantItemList = ({ itemCardsData }) => {
+import { addItem, removeItem } from '../utils/cartSlice';
+const RestaurantItemList = ({ itemCardsData , isCart = false}) => {
     const handleImageError = useFallbackImage();
     
     //  using redux for pushing item to cartSlice
     const dispatch = useDispatch();
-    const handleDispatchClick = (i) => {
+    const handleAddClick = (i) => {
         dispatch(addItem(i)); 
+    }
+    const handleRemoveClick = (index) =>{
+        dispatch(removeItem(index));
     }
 
   return (
@@ -55,9 +58,10 @@ const RestaurantItemList = ({ itemCardsData }) => {
                     </p>
                     {/* Adding item to cartSlice */}
                     <button className="px-4 py-2 font-semibold transition duration-300 rounded-full bg-primary-yellow text-primary-bgColor hover:bg-primary-light hover:text-primary-dark focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-opacity-50"
-                     onClick={() => handleDispatchClick(i)}
+                     onClick={() => isCart ? handleRemoveClick(index) : handleAddClick(i)}
+                    //  onRemoveItem={handleRemoveItem}
                     >
-                        ADD
+                         {isCart ? "REMOVE" : "ADD"}
                     </button>
                 </div>
             </div>
