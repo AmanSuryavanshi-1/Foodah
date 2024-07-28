@@ -16,7 +16,7 @@ const RestaurantMenu = () => {
   const handleImageError = useFallbackImage();
 
   return res === null ? (
-    <Shimmer />
+    <Shimmer type="menu" />
   ) : (
     <div className="min-h-screen bg-gradient-to-br from-primary-bgColor via-primary-bgColor to-primary-dark">
   <div className="max-w-4xl px-4 py-12 mx-auto">

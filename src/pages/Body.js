@@ -46,10 +46,10 @@ const Body = () => {
     </div>
   );
   
-  return listOfRestaurants.length == 0 ? <Shimmer/> : (
+  return listOfRestaurants.length == 0 ? <Shimmer type="list" /> : (
     
   // ~ FILTER BY SEARCH
-    <div className="p-8 font-serif mx-28 bg-primary-bgColor">
+    <div className="p-8 font-serif mx-28 bg-primary-bgColor max-sm:mx-1">
       <div className="mx-4 mb-6">
         <div className="flex flex-col justify-between space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
         <div className="flex sm:w-auto">
@@ -74,7 +74,7 @@ const Body = () => {
           </div>
 {/* FILTER BY RATING - Top Rated Restaurants */}
 <div className="flex flex-col w-full sm:w-auto sm:flex-row sm:space-x-2">
-        <button className="flex items-center justify-center px-4 py-2 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent"
+        <button className="flex items-center justify-center px-4 py-2 transition-all duration-300 border-2 shadow-sm cursor-pointer rounded-2xl shadow-primary-light bg-primary-yellow text-primary-bgColor border-primary-white hover:bg-primary-light hover:text-primary-bgColor hover:border-transparent max-sm:mb-2"
         onClick={()=>{
           const filteredList = listOfRestaurants.filter((res) =>{
             return res.info.avgRating >= 4.5;
