@@ -58,12 +58,18 @@ const RestaurantItemList = ({ itemCardsData, isCart = false }) => {
                             onError={handleImageError} 
                             loading='lazy'
                         />
-                        <button 
-                            className="absolute px-4 py-1 text-sm font-semibold transition-all duration-300 rounded-md shadow-md right-4 top-3/4 bg-primary-yellow text-primary-bgColor hover:bg-primary-light"
-                            onClick={() => isCart ? handleRemoveClick(index) : handleAddClick(i)}
-                        >
-                            {isCart ? "REMOVE" : "ADD"}
-                        </button>
+                        <div className="absolute inset-x-0 flex justify-center -bottom-2">
+                            <button 
+                                 className={`px-4 py-1 text-sm font-semibold transition-all duration-300 rounded-md shadow-md border-2 border-primary-light
+                                    ${isCart 
+                                        ? "bg-red-500 hover:bg-red-600" 
+                                        : "bg-green-500 hover:bg-green-600"
+                                    } text-white`}
+                                onClick={() => isCart ? handleRemoveClick(index) : handleAddClick(i)}
+                            >
+                                {isCart ? "REMOVE" : "ADD"}
+                            </button>
+                        </div>
                     </div>
                 </div>
             ))} 

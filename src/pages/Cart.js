@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import RestaurantItemList from '../components/RestaurantItemList';
 import { clearCart } from '../utils/cartSlice';
 import { Link } from 'react-router-dom';
+import { FaArrowRight } from "react-icons/fa";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -60,9 +61,9 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-                <button className="flex items-center justify-center w-full px-5 py-2 mt-6 font-serif transition-all duration-300 border-2 border-transparent cursor-pointer rounded-2xl bg-gradient-to-r from-primary-light to-primary-yellow text-primary-bgColor hover:bg-primary-yellow hover:text-primary-grey">
-  Proceed to Checkout
-</button>
+                  <button className="flex items-center justify-center w-full px-5 py-2 mt-6 font-serif transition-all duration-300 border-2 border-transparent cursor-pointer rounded-2xl bg-gradient-to-r from-primary-light to-primary-yellow text-primary-bgColor hover:bg-primary-white hover:text-primary-grey">
+                    Proceed to Checkout
+                  </button>
               </div>
             </div>
           </div>
@@ -70,9 +71,20 @@ const Cart = () => {
           <div className="py-16 text-center">
             <p className="mb-6 text-xl">Your cart is empty. Add some delicious items to get started!</p>
             <Link to="/">
-            <button className="px-6 py-3 font-semibold transition-colors rounded-full bg-primary-yellow text-primary-dark hover:bg-primary-light">
-              Browse Restaurants
-            </button>
+            <button className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white transition-all duration-300 transform rounded-full shadow-md bg-gradient-to-r from-primary-yellow to-yellow-500 hover:from-yellow-500 hover:to-primary-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-yellow hover:-translate-y-2">
+  <span>Browse Restaurants</span>
+</button>
+{/*  */}
+<button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden text-base font-semibold transition duration-300 ease-out transform rounded-full shadow-md bg-gradient-to-r from-primary-yellow to-yellow-500 hover:from-yellow-500 hover:to-primary-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-yellow group hover:-translate-y-2">
+  <arrow></arrow>
+  <span className="absolute inset-0 flex items-center justify-center w-full h-full duration-300 -translate-x-full text-primary-dark bg-primary-yellow group-hover:translate-x-0 ease">
+  <FaArrowRight/>
+  </span>
+  <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">Browse Restaurants</span>
+  <span className="relative invisible">Browse Restaurants</span>
+</button>
+
+{/*  */}
             </Link>
           </div>
         )}
