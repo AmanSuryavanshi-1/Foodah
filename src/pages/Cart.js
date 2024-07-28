@@ -71,21 +71,22 @@ const Cart = () => {
           <div className="py-16 text-center">
             <p className="mb-6 text-xl">Your cart is empty. Add some delicious items to get started!</p>
             <Link to="/">
-            <button className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white transition-all duration-300 transform rounded-full shadow-md bg-gradient-to-r from-primary-yellow to-yellow-500 hover:from-yellow-500 hover:to-primary-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-yellow hover:-translate-y-2">
-  <span>Browse Restaurants</span>
-</button>
-{/*  */}
-<button className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden text-base font-semibold transition duration-300 ease-out transform rounded-full shadow-md bg-gradient-to-r from-primary-yellow to-yellow-500 hover:from-yellow-500 hover:to-primary-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-yellow group hover:-translate-y-2">
-  <arrow></arrow>
-  <span className="absolute inset-0 flex items-center justify-center w-full h-full duration-300 -translate-x-full text-primary-dark bg-primary-yellow group-hover:translate-x-0 ease">
-  <FaArrowRight/>
-  </span>
-  <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">Browse Restaurants</span>
-  <span className="relative invisible">Browse Restaurants</span>
-</button>
-
-{/*  */}
+              <button className="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium transition duration-300 ease-out border-[3px] rounded-full shadow-md border-primary-yellow text-primary-light group">
+                <span className="absolute inset-0 flex items-center justify-center w-full h-full duration-300 -translate-x-full text-primary-light bg-primary-yellow group-hover:translate-x-0 ease">
+                <FaArrowRight/>
+                </span>
+                <span className="absolute flex items-center justify-center w-full h-full transition-all duration-300 transform text-primary-light group-hover:translate-x-full ease">Browse Restaurants</span>
+                <span className="relative invisible">Browse Restaurants</span>
+              </button>
             </Link>
+            {/* <a href="#_" class="relative inline-block text-lg group">
+<span class="relative z-10 block px-5 py-3 overflow-hidden font-serif font-semibold leading-tight text-primary-white transition-colors duration-300 ease-out border-2 border-primary-yellow rounded-lg group-hover:text-primary-light">
+<span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-primary-bgColor"></span>
+<span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-primary-yellow group-hover:-rotate-180 ease"></span>
+<span class="relative">Button Text</span>
+</span>
+<span class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+</a> */}
           </div>
         )}
       </div>
