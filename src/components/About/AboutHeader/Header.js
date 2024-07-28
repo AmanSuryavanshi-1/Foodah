@@ -5,9 +5,9 @@ import profileImage from '../../../../Assets/AS Github.png';
 
 const Header = () => {
   return (
-    <section id="header" className="h-screen overflow-hidden">
-      <div className="container relative flex flex-col items-center justify-center gap-8 mx-auto h-5/6">
-        <div className="grid grid-cols-[100px_1fr_1fr] gap-28 pt-22 items-center">
+    <section id="header" className="h-screen overflow-hidden max-md:w-screen max-md:h-full max-md:p-4">
+      <div className="container relative flex flex-col items-center justify-center gap-8 mx-auto h-5/6 ">
+        <div className="grid grid-cols-[100px_1fr_1fr] gap-28 pt-22 items-center max-md:grid-cols-1 max-md:gap-0">
           <HeaderSocial />
           <Data />
           <div className="relative w-96 h-96">
