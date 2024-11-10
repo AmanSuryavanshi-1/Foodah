@@ -1,4 +1,3 @@
-import { inject } from '@vercel/analytics';
 import React, { Suspense, lazy } from 'react'
 import ReactDOM from "react-dom/client"
 import "./App.css"
@@ -17,7 +16,6 @@ import { Provider } from 'react-redux'
 import appStore from './src/utils/appStore'
 
 // import Wishlist from './src/components/NavComponents/Wishlist'
-inject();
 const WL_recommendations = lazy(()=> import("./src/pages/Wishlist"));
 
    const AppLayout = () => {
