@@ -1,171 +1,138 @@
 # Foodah 🍽️
 
-[![Vercel](https://img.shields.io/badge/Hosted%20on-Vercel-blue.svg)](https://foodah.vercel.app/)
+[![Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=flat&logo=vercel)](https://foodah.vercel.app/)
+[![React](https://img.shields.io/badge/React-18.2-61DAFB?style=flat&logo=react)](https://react.dev/)
+[![Redux](https://img.shields.io/badge/Redux-Toolkit-764ABC?style=flat&logo=redux)](https://redux-toolkit.js.org/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 
-Foodah is a dynamic, responsive website that integrates various APIs and custom-built components to deliver a seamless user experience. This project showcases advanced data fetching, error handling, and performance optimizations, along with a stylish and intuitive design.
+> High-performance food ordering platform with real-time Swiggy API integration and custom React hooks.
 
-## 🚀 [Live Demo](https://foodah.vercel.app/)
+[🌐 Live Demo](https://foodah.vercel.app) • [📖 Technical Docs](docs/FOODAH-TECHNICAL-DOCUMENTATION.md) • [👨‍💻 Portfolio](https://www.amansuryavanshi.me)
 
-## Technologies Used
+---
 
-- **JavaScript**
-- **React**
-- **Tailwind CSS**: `tailwindcss`
-- **PostCSS**: `postcss`
-- **React Router Dom**
-- **React Icons**
-- **Email.js**
-- **Build Tool**: `Parcel`
+## Key Metrics
+
+| Metric | Value | Description |
+|--------|-------|-------------|
+| 🚀 **Load Reduction** | 40% | Route-level code splitting |
+| ⚡ **Performance** | 60fps | Smooth scrolling |
+| 📊 **Data Size** | 14,000+ lines | Live Swiggy JSON data |
+
+---
+
+## Overview
+
+Foodah is a restaurant discovery platform demonstrating advanced React patterns. Fetches live data from Swiggy API, implements custom hooks for network detection and image fallbacks, and uses Redux Toolkit for cart management.
+
+**[📖 Read Full Technical Documentation →](docs/FOODAH-TECHNICAL-DOCUMENTATION.md)**
+
+---
 
 ## Features
 
-### 🧭 Navigation
+| Feature | Description |
+|---------|-------------|
+| 🍕 **Restaurant Discovery** | Live Swiggy data with 14K+ JSON lines |
+| 🔍 **Smart Search** | Real-time filtering by restaurant name |
+| ⭐ **Rating Filter** | Show top-rated restaurants (4.5+) |
+| � **Shopping Cart** | Redux-powered add/remove/clear |
+| 📱 **Responsive Design** | Mobile-first with Tailwind CSS |
+| ⚡ **Shimmer UI** | Skeleton loading for perceived performance |
+| 🌐 **Offline Detection** | Clear feedback when network is lost |
 
-- **Quick Routes**: Easily access important sections like **About Developer**, **About Site**, **Contact Us**, and **Network Status**.
-- **Enhanced User Experience**: Intuitive layout and organization for smooth browsing.
+---
 
-### 📊 Data Fetching
+## Tech Stack
 
-1. **Swiggy API Integration**
-   - **Live Data**: Retrieves current data directly from Swiggy's hosted API.
-   - **Error Handling**: Uses optional chaining for graceful error management.
-2. **GitHub API Integration**
-   - **Dynamic Content**: Fetches developer data from the GitHub API for the **About** section.
-   - **Interactive Display**: Keeps the **About** section updated in real-time.
+| Category | Technologies |
+|----------|-------------|
+| **Frontend** | React 18, JavaScript ES6+, Tailwind CSS |
+| **State** | Redux Toolkit, React Context |
+| **Routing** | React Router DOM 6 |
+| **Build** | Parcel 2.12, PostCSS |
+| **APIs** | Swiggy API, GitHub API, EmailJS |
+| **Deploy** | Vercel |
 
-### ❌ Error Management
+---
 
-- **Error Component**: Displays user-friendly error messages for incorrect routes, enhancing navigation and recovery from issues.
+## Quick Start
 
-### ✨ Shimmer UI
+```bash
+# Clone repository
+git clone https://github.com/AmanSuryavanshi-1/Foodah.git
+cd Foodah
 
-- **Loading Experience**: Implements a shimmer UI effect for an engaging loading experience while fetching content.
+# Install dependencies
+npm install
 
-### 🔄 Custom Hooks
+# Start development server
+npm start
 
-1. **`useOnlineStatus`**
-   - Detects the user's online status and updates the navbar accordingly.
-   - Displays a clear error message when offline.
-2. **`useRestaurantMenu.js`**
-   - Fetches restaurant menu data from the API.
-3. **`useFallbackImage.js`**
-   - Handles image loading failures by substituting missing images with random alternatives.
+# Build for production
+npm run build
+```
 
-### 🔗 Personalized Footer
+---
 
-- **Developer Information**: Displays relevant information about the developer, including contact details and important links.
+## Project Structure
 
-### 🎨 Design & Development
+```
+Foodah/
+├── App.js              # Root with router config
+├── src/
+│   ├── components/     # Navbar, Footer, Cards
+│   ├── pages/          # Body, Menu, Cart, Contact
+│   └── utils/          # Custom hooks, Redux, Constants
+├── Assets/             # Images and fallbacks
+└── docs/               # Technical documentation
+```
 
-- **Stylish Design**: Aesthetically pleasing and functional design for a smooth user experience.
+---
 
-### 🚀 Performance Optimization
+## Custom Hooks
 
-- **Lazy Loading & Suspense**: Utilizes lazy loading and suspense to optimize performance, especially with large data sets (approx. 14,000 JSON lines).
+| Hook | Purpose |
+|------|---------|
+| `useOnlineStatus` | Network connectivity detection |
+| `useRestaurantMenu` | Menu data fetching with transformation |
+| `useFallbackImage` | Broken image handling with alternatives |
 
-### 🔍 Detailed Documentation
+**[See Implementation Details →](docs/FOODAH-TECHNICAL-DOCUMENTATION.md#key-features)**
 
-- **Comprehensive Resources**: For more insights, visit the developer’s blogs or portfolio for in-depth notes and a detailed project description.
+---
 
-## Problems Faced & Solutions
+## Deployment
 
-1. **Large Data Handling**: Deep reading of routes for effective data destructuring.
-2. **Frequent Data Changes**: Encountered errors due to dynamic API data.
-3. **CORS Issues**: Used CORS proxy solutions for development.
-4. **Deployment Issues**: Updated dependencies and managed nested routes to avoid 404 errors.
-5. **Image Loading Time**: Implemented lazy loading for image optimization.
-6. **Undefined Image Handling**: Created a custom hook to handle image loading failures with fallback images.
+```json
+// vercel.json - SPA routing fix
+{
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/" }
+    ]
+}
+```
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14.x or later)
-- npm (v6.x or later) or Yarn
-
-### Installation
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone [https://github.com/your-username/foodah.git](https://github.com/AmanSuryavanshi-1/Foodah)
-   cd foodah
-   ```
-
-2. **Install Dependencies**
-
-   Using npm:
-
-   ```bash
-   npm install
-   ```
-
-   Using Yarn:
-
-   ```bash
-   yarn install
-   ```
-
-### Running the Project Locally
-
-1. **Start the Development Server**
-
-   Using npm:
-
-   ```bash
-   npm start
-   ```
-
-   Using Yarn:
-
-   ```bash
-   yarn start
-   ```
-
-2. **Open in Browser**
-
-   Visit `http://localhost:3000` to view the app in the browser.
-
-### Building for Production
-
-1. **Build the Project**
-
-   Using npm:
-
-   ```bash
-   npm run build
-   ```
-
-   Using Yarn:
-
-   ```bash
-   yarn build
-   ```
-
-2. **Serve the Build**
-
-   The production-ready files will be in the `dist` folder. You can serve these files using any static server.
-
-### Deployment
-
-Foodah is deployed using Vercel. To deploy your own version:
-
-1. **Push to GitHub**
-
-   Ensure your changes are committed and pushed to your GitHub repository.
-
-2. **Deploy on Vercel**
-
-   - Go to [Vercel](https://vercel.com/).
-   - Click **New Project** and select your GitHub repository.
-   - Configure the settings if necessary and click **Deploy**.
-
-   Vercel will automatically build and deploy your project.
+---
 
 ## Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check out the [issues page](https://github.com/your-username/foodah/issues).
+Contributions welcome! Check the [issues page](https://github.com/AmanSuryavanshi-1/Foodah/issues).
+
+---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+[MIT License](LICENSE)
+
+---
+
+<div align="center">
+
+**Built by [Aman Suryavanshi](https://www.amansuryavanshi.me)**
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-4285F4?style=flat&logo=google-chrome)](https://www.amansuryavanshi.me)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/amansuryavanshi-ai/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github)](https://github.com/AmanSuryavanshi-1)
+
+</div>
