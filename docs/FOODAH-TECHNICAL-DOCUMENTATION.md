@@ -191,13 +191,17 @@ Quantified results demonstrating production-ready quality:
 
 | Feature | Description |
 |---------|-------------|
-| 🍕 **Restaurant Discovery** | Browse restaurants with live Swiggy data |
-| 🔍 **Smart Search** | Real-time filtering by restaurant name |
+| 🍕 **Restaurant Discovery** | Browse restaurants with live Swiggy data (14K+ JSON lines) |
+| 🔍 **Smart Search** | Real-time filtering by restaurant name with reset |
 | ⭐ **Rating Filter** | Show only top-rated restaurants (4.5+) |
 | 📋 **Menu Browsing** | Nested accordion menus with category grouping |
-| 🛒 **Shopping Cart** | Redux-powered cart with add/remove/clear |
-| 👤 **Developer Profile** | GitHub API integration for About section |
-| 📧 **Contact Form** | EmailJS-powered serverless form submission |
+| 🛒 **Shopping Cart** | Redux-powered cart with order summary, taxes, and delivery fee |
+| 🥗 **Veg/Non-Veg Indicators** | Visual diet classification for each menu item |
+| 👤 **Developer Profile** | GitHub API integration with live repo stats |
+| 📧 **Contact Form** | EmailJS + WhatsApp integration for messaging |
+| 🔐 **Authentication UI** | Login/Signup forms with Google sign-in button |
+| 📱 **Responsive Navbar** | Mobile modal menu with cart badge counter |
+| 📅 **GitHub Calendar** | Contribution calendar visualization |
 
 ### Architecture Diagram
 
@@ -240,30 +244,37 @@ Foodah/
 ├── Assets/                # Static images and fallbacks
 │   ├── 1.jpg - 7.jpg      # Fallback food images
 │   ├── Logo.png           # App logo
+│   ├── main logo.png      # Developer branding
 │   └── veg.png, nonVeg.png# Diet indicators
 └── src/
     ├── components/
-    │   ├── Navbar.js          # Navigation with cart badge
-    │   ├── Footer.js          # Developer info and links
-    │   ├── RestaurantCard.js  # Individual restaurant display
-    │   ├── RestaurantCategory.js
-    │   ├── RestaurantItemList.js
+    │   ├── Navbar.js          # Responsive nav with mobile modal
+    │   ├── Footer.js          # Social links and quick navigation
+    │   ├── RestaurantCard.js  # Card with fallback image handling
+    │   ├── RestaurantCategory.js  # Accordion toggle component
+    │   ├── RestaurantItemList.js  # Menu items with add/remove
     │   ├── ScrollToTop.js     # Route change scroll reset
     │   └── About/             # About section components
+    │       ├── AboutHeader/   # Header sub-components
+    │       ├── AboutMe.js     # Personal info section
+    │       ├── GithubProfile.js   # Live GitHub user data
+    │       ├── GithubCalendar.js  # Contribution calendar
+    │       ├── RepoData.js    # Foodah repo statistics
+    │       └── Skills.js      # Tech stack display
     ├── pages/
-    │   ├── Body.js            # Homepage with restaurant list
-    │   ├── RestaurantMenu.js  # Menu page with accordions
-    │   ├── Cart.js            # Shopping cart page
-    │   ├── Contact.js         # EmailJS contact form
-    │   ├── About.js           # Developer info with GitHub API
-    │   ├── Auth.js            # Authentication page
-    │   ├── Wishlist.js        # Lazy-loaded wishlist
-    │   ├── Shimmer.js         # Loading skeleton UI
-    │   └── Error.js           # Error boundary display
+    │   ├── Body.js            # Homepage with search/filter
+    │   ├── RestaurantMenu.js  # Menu with nested categories
+    │   ├── Cart.js            # Cart with order summary
+    │   ├── Contact.js         # EmailJS + WhatsApp form
+    │   ├── About.js           # Toggle profile + GitHub stats
+    │   ├── Auth.js            # Login/Signup with Google
+    │   ├── Wishlist.js        # Lazy-loaded coming soon
+    │   ├── Shimmer.js         # List and menu skeletons
+    │   └── Error.js           # useRouteError display
     └── utils/
-        ├── constant.js        # API URLs and constants
+        ├── constant.js        # CDN_URL, API endpoints
         ├── appStore.js        # Redux store configuration
-        ├── cartSlice.js       # Cart state management
+        ├── cartSlice.js       # add/remove/clear actions
         ├── useOnlineStatus.js # Network detection hook
         ├── useRestaurantMenu.js # Menu fetching hook
         └── useFallbackImage.js  # Image error handling hook
@@ -439,6 +450,231 @@ const fetchData = async () => {
 
 ---
 
+### 5. Responsive Navbar with Mobile Modal
+
+A fully responsive navigation with mobile hamburger menu and cart badge:
+
+```javascript
+const Navbar = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
+  const [showModal, setShowModal] = useState(false);
+  const cartItems = useSelector((store) => store.cart.items);
+  const onlineStatus = useOnlineStatus();
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 769);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Cart badge with item count
+  {cartItems.length > 0 && (
+    <div className="absolute -top-3 -right-1 bg-primary-yellow">
+      {cartItems.length}
+    </div>
+  )}
+
+  // Network status indicator
+  {onlineStatus ? <MdOutlineNetworkWifi /> : <RiSignalWifiOffLine />}
+};
+```
+
+**Features:**
+- Window resize listener for responsive breakpoint detection
+- Modal overlay for mobile navigation
+- Real-time cart item count badge
+- Visual network status indicator (online/offline icons)
+
+---
+
+### 6. Cart with Order Summary Calculations
+
+Complete shopping cart with itemized billing:
+
+```javascript
+const Cart = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+  
+  // Calculate order totals
+  const subtotal = cartItems.reduce(
+    (total, item) => total + 
+      (item.card.info.price || item.card.info.defaultPrice || 0) / 100, 
+    0
+  );
+  const deliveryCharge = 42;
+  const tax = subtotal * 0.1;  // 10% tax
+  const totalCost = subtotal + deliveryCharge + tax;
+
+  return (
+    <div className="order-summary">
+      <div>Subtotal: ₹{subtotal.toFixed(2)}</div>
+      <div>Delivery Fee: ₹{deliveryCharge.toFixed(2)}</div>
+      <div>Taxes & Charges: ₹{tax.toFixed(2)}</div>
+      <div className="font-bold">Total: ₹{totalCost.toFixed(2)}</div>
+    </div>
+  );
+};
+```
+
+---
+
+### 7. Restaurant Category Accordion
+
+Collapsible menu categories with toggle animation:
+
+```javascript
+const RestaurantCategory = ({ catData }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  
+  // Handle nested categories from API
+  const nestedCat = Array.isArray(catData?.categories) 
+    ? catData.categories 
+    : [];
+
+  return (
+    <div className="accordion-container">
+      <div onClick={() => setShowDropdown(!showDropdown)}>
+        <h1>{catData?.title} ({catData?.itemCards?.length || nestedCat.length})</h1>
+        {showDropdown ? <MdExpandLess /> : <MdExpandMore />}
+      </div>
+      
+      {showDropdown && <RestaurantItemList itemCardsData={catData?.itemCards} />}
+      {showDropdown && nestedCat.map((i, idx) => (
+        <RestaurantItemList key={idx} itemCardsData={i.itemCards} />
+      ))}
+    </div>
+  );
+};
+```
+
+---
+
+### 8. Veg/Non-Veg Classification
+
+Visual diet indicators for each menu item:
+
+```javascript
+const RestaurantItemList = ({ itemCardsData, isCart = false }) => {
+  return itemCardsData?.map((i, index) => (
+    <div key={index} className="menu-item">
+      {/* Veg/Non-Veg indicator */}
+      <img
+        src={i?.card?.info?.itemAttribute?.vegClassifier === "VEG" 
+          ? vegIcon 
+          : nonVegIcon}
+        alt={i?.card?.info?.itemAttribute?.vegClassifier}
+        className="w-4 h-4"
+      />
+      
+      {/* Price with fallback */}
+      <span>₹{((i?.card?.info?.defaultPrice || i?.card?.info?.price) / 100).toFixed(2)}</span>
+      
+      {/* Dynamic Add/Remove button */}
+      <button onClick={() => isCart ? handleRemove(index) : handleAdd(i)}>
+        {isCart ? "REMOVE" : "ADD"}
+      </button>
+    </div>
+  ));
+};
+```
+
+---
+
+### 9. GitHub API Integration
+
+Live developer profile and repository data:
+
+```javascript
+// GithubProfile.js - User data
+const GithubProfile = () => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('https://api.github.com/users/AmanSuryavanshi-1');
+      const json = await response.json();
+      setUserData(json);
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <img src={userData?.avatar_url} alt="Avatar" />
+      <p>{userData?.public_repos} Repos | {userData?.followers} Followers</p>
+      <p>{userData?.bio}</p>
+    </div>
+  );
+};
+
+// RepoData.js - Repository statistics
+const RepoData = () => {
+  const [repoData, setRepoData] = useState(null);
+
+  useEffect(() => {
+    fetch('https://api.github.com/repos/AmanSuryavanshi-1/foodah')
+      .then(res => res.json())
+      .then(data => setRepoData(data));
+  }, []);
+
+  return (
+    <div>
+      <p>Language: {repoData?.language}</p>
+      <p>Stars: {repoData?.stargazers_count}</p>
+      <p>Forks: {repoData?.forks_count}</p>
+      <p>Last Updated: {new Date(repoData?.updated_at).toLocaleDateString()}</p>
+    </div>
+  );
+};
+```
+
+---
+
+### 10. Authentication UI
+
+Login/Signup toggle with Google sign-in:
+
+```javascript
+const Auth = () => {
+  const [isLogin, setIsLogin] = useState(true);
+
+  return (
+    <div className="auth-form">
+      <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+      
+      {/* Full Name field only for signup */}
+      {!isLogin && <input type="text" placeholder="Full Name" required />}
+      
+      <input type="email" placeholder="Email address" required />
+      <input type="password" placeholder="Password" required />
+      
+      {isLogin && (
+        <div>
+          <input type="checkbox" /> Remember me
+          <a href="#">Forgot password?</a>
+        </div>
+      )}
+      
+      <button>{isLogin ? 'Sign In' : 'Sign Up'}</button>
+      
+      {/* Google OAuth button */}
+      <button className="google-btn">
+        <FcGoogle /> Continue with Google
+      </button>
+      
+      <p>
+        {isLogin ? "Don't have an account?" : "Already have an account?"}
+        <button onClick={() => setIsLogin(!isLogin)}>
+          {isLogin ? 'Sign Up' : 'Sign In'}
+        </button>
+      </p>
+    </div>
+  );
+};
+```
+
+---
+
 ## Technical Deep Dive
 
 ### Shimmer UI Implementation
@@ -543,6 +779,46 @@ const cartSlice = createSlice({
 export const { addItem, clearCart, removeItem } = cartSlice.actions;
 export default cartSlice.reducer;
 ```
+
+---
+
+### Custom Tailwind Theme Configuration
+
+Extended Tailwind with custom branding colors and fonts:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          light: '#ffffcc',    // Cream/yellow tint
+          yellow: '#FDDA24',   // Brand yellow (buttons, accents)
+          dark: '#403F45',     // Dark gray (cards, overlays)
+          white: '#FFFFFF',    // Pure white
+          grey: '#393956',     // Blue-gray (borders)
+          bgColor: '#222223',  // Near-black background
+        },
+      },
+      fontFamily: {
+        'sans': ['Poppins', 'sans-serif'],  // Body text
+        'serif': ['Cinzel', 'serif'],       // Headings
+      },
+      animation: {
+        profile: 'profile__animate 8s ease-in-out infinite 1s',
+      },
+    },
+  },
+};
+```
+
+**Color Usage:**
+- `primary-bgColor`: Main app background
+- `primary-yellow`: CTAs, buttons, highlights
+- `primary-light`: Text, borders, hover states
+- `primary-dark`: Cards, modal overlays
 
 ---
 
